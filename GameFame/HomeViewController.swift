@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var TopRated: UICollectionView!
 
  
-    
+    var slug = String()
     private var network = NetworkService()
     private var bag = DisposeBag()
     
@@ -34,11 +34,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             cell.gameName.text = item.name
             cell.gameImage.sd_setImage(with: URL(string: item.background_image))
         }.disposed(by: bag)
-        
+     
         TopRated.rx.modelSelected(Game.self)
             .subscribe { game in
                 let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                // transfer data
+                detailVC.game = game.name
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }.disposed(by: bag)
         

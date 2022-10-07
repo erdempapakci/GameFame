@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C344F19E28ED9BD900F02C76 /* GamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344F19D28ED9BD900F02C76 /* GamesResponse.swift */; };
-		C344F1A028ED9BED00F02C76 /* GamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344F19F28ED9BED00F02C76 /* GamesModel.swift */; };
+		C344F1A028ED9BED00F02C76 /* GameDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344F19F28ED9BED00F02C76 /* GameDetail.swift */; };
 		C3AFDED128F0422500B89907 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED028F0422500B89907 /* CustomTabBarController.swift */; };
 		C3AFDED528F0432400B89907 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED428F0432400B89907 /* SearchViewController.swift */; };
 		C3AFDED728F0433000B89907 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED628F0433000B89907 /* ProfileViewController.swift */; };
@@ -42,7 +42,7 @@
 		88E341A27CA038EF14809022 /* Pods-GameFame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameFame.debug.xcconfig"; path = "Target Support Files/Pods-GameFame/Pods-GameFame.debug.xcconfig"; sourceTree = "<group>"; };
 		B3AF683B89AB245690B55809 /* Pods_GameFame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameFame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C344F19D28ED9BD900F02C76 /* GamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesResponse.swift; sourceTree = "<group>"; };
-		C344F19F28ED9BED00F02C76 /* GamesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesModel.swift; sourceTree = "<group>"; };
+		C344F19F28ED9BED00F02C76 /* GameDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetail.swift; sourceTree = "<group>"; };
 		C3AFDED028F0422500B89907 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C3AFDED428F0432400B89907 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C3AFDED628F0433000B89907 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				C344F19D28ED9BD900F02C76 /* GamesResponse.swift */,
-				C344F19F28ED9BED00F02C76 /* GamesModel.swift */,
+				C344F19F28ED9BED00F02C76 /* GameDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +183,7 @@
 		C3DE10C828EC7B5E00568560 /* GameFame */ = {
 			isa = PBXGroup;
 			children = (
+				C3AFDED428F0432400B89907 /* SearchViewController.swift */,
 				C3AFDED828F04A2E00B89907 /* CustomTabBar */,
 				C3B76B3328EEFEDA00C93A26 /* Utils */,
 				C3CDB91628ECAA7300AD0612 /* Platforms */,
@@ -192,7 +193,6 @@
 				C3DE10C928EC7B5E00568560 /* AppDelegate.swift */,
 				C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */,
 				C3DE10CB28EC7B5E00568560 /* SceneDelegate.swift */,
-				C3AFDED428F0432400B89907 /* SearchViewController.swift */,
 				C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */,
 				C3AFDED628F0433000B89907 /* ProfileViewController.swift */,
 				C3DE10CF28EC7B5E00568560 /* Main.storyboard */,
@@ -378,7 +378,7 @@
 				C3B76B3528EEFEFD00C93A26 /* UIView + Extensions.swift in Sources */,
 				C3AFDEDF28F090BC00B89907 /* DetailViewController.swift in Sources */,
 				C3CDB91928ECAA9800AD0612 /* PlatformsCollectionViewCell.swift in Sources */,
-				C344F1A028ED9BED00F02C76 /* GamesModel.swift in Sources */,
+				C344F1A028ED9BED00F02C76 /* GameDetail.swift in Sources */,
 				C3AFDED128F0422500B89907 /* CustomTabBarController.swift in Sources */,
 				C3DE10CE28EC7B5E00568560 /* HomeViewController.swift in Sources */,
 				C3B76B2C28EEF26E00C93A26 /* APIConstants.swift in Sources */,

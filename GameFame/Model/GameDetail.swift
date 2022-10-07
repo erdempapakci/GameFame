@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GamesModel {
+struct GameDetail:Codable {
    
         let name: String?
         let slug: String

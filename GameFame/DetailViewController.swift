@@ -6,13 +6,16 @@
 //
 
 import UIKit
-
+import RxSwift
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var developerName: UILabel!
+    @IBOutlet weak var gameName: UILabel!
+    
+    var game = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        gameName.text = game
     }
   
 
