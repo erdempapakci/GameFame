@@ -12,6 +12,9 @@
 		C3AFDED128F0422500B89907 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED028F0422500B89907 /* CustomTabBarController.swift */; };
 		C3AFDED528F0432400B89907 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED428F0432400B89907 /* SearchViewController.swift */; };
 		C3AFDED728F0433000B89907 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDED628F0433000B89907 /* ProfileViewController.swift */; };
+		C3AFDEDC28F0753C00B89907 /* MetaCriticCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDEDA28F0753C00B89907 /* MetaCriticCollectionViewCell.swift */; };
+		C3AFDEDD28F0753C00B89907 /* MetaCriticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDEDB28F0753C00B89907 /* MetaCriticCollectionViewCell.xib */; };
+		C3AFDEDF28F090BC00B89907 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */; };
 		C3B76B2628EEE51D00C93A26 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C3B76B2528EEE51D00C93A26 /* Alamofire */; };
 		C3B76B2828EEEE5E00C93A26 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B76B2728EEEE5E00C93A26 /* NetworkService.swift */; };
 		C3B76B2C28EEF26E00C93A26 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B76B2B28EEF26E00C93A26 /* APIConstants.swift */; };
@@ -43,6 +46,9 @@
 		C3AFDED028F0422500B89907 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C3AFDED428F0432400B89907 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C3AFDED628F0433000B89907 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C3AFDEDA28F0753C00B89907 /* MetaCriticCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaCriticCollectionViewCell.swift; sourceTree = "<group>"; };
+		C3AFDEDB28F0753C00B89907 /* MetaCriticCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetaCriticCollectionViewCell.xib; sourceTree = "<group>"; };
+		C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C3B76B2728EEEE5E00C93A26 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C3B76B2B28EEF26E00C93A26 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C3B76B3428EEFEFD00C93A26 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
@@ -113,6 +119,15 @@
 			path = CustomTabBar;
 			sourceTree = "<group>";
 		};
+		C3AFDED928F0752000B89907 /* Metacritic */ = {
+			isa = PBXGroup;
+			children = (
+				C3AFDEDA28F0753C00B89907 /* MetaCriticCollectionViewCell.swift */,
+				C3AFDEDB28F0753C00B89907 /* MetaCriticCollectionViewCell.xib */,
+			);
+			path = Metacritic;
+			sourceTree = "<group>";
+		};
 		C3B76B3328EEFEDA00C93A26 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +193,7 @@
 				C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */,
 				C3DE10CB28EC7B5E00568560 /* SceneDelegate.swift */,
 				C3AFDED428F0432400B89907 /* SearchViewController.swift */,
+				C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */,
 				C3AFDED628F0433000B89907 /* ProfileViewController.swift */,
 				C3DE10CF28EC7B5E00568560 /* Main.storyboard */,
 				C3DE10D528EC7B5E00568560 /* Assets.xcassets */,
@@ -200,6 +216,7 @@
 		C3DE10E528EC9CA600568560 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				C3AFDED928F0752000B89907 /* Metacritic */,
 				C3CDB91528ECAA6000AD0612 /* TopRated */,
 			);
 			path = CollectionViewCells;
@@ -292,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3DE10E428EC90ED00568560 /* TopRatedCollectionViewCell.xib in Resources */,
+				C3AFDEDD28F0753C00B89907 /* MetaCriticCollectionViewCell.xib in Resources */,
 				C3CDB91A28ECAA9800AD0612 /* PlatformsCollectionViewCell.xib in Resources */,
 				C3DE10D928EC7B5E00568560 /* LaunchScreen.storyboard in Resources */,
 				C3DE10D628EC7B5E00568560 /* Assets.xcassets in Resources */,
@@ -356,7 +374,9 @@
 				C3B76B3728EF05CA00C93A26 /* CustomTabBar.swift in Sources */,
 				C3DE10ED28EC9D4400568560 /* UpComingCollectionViewCell.swift in Sources */,
 				C3AFDED728F0433000B89907 /* ProfileViewController.swift in Sources */,
+				C3AFDEDC28F0753C00B89907 /* MetaCriticCollectionViewCell.swift in Sources */,
 				C3B76B3528EEFEFD00C93A26 /* UIView + Extensions.swift in Sources */,
+				C3AFDEDF28F090BC00B89907 /* DetailViewController.swift in Sources */,
 				C3CDB91928ECAA9800AD0612 /* PlatformsCollectionViewCell.swift in Sources */,
 				C344F1A028ED9BED00F02C76 /* GamesModel.swift in Sources */,
 				C3AFDED128F0422500B89907 /* CustomTabBarController.swift in Sources */,

@@ -10,22 +10,35 @@ import Alamofire
 import RxSwift
 class NetworkService {
     let bag = DisposeBag()
-    var detailsBehavior = PublishSubject<[Game]>()
-    func fetchData(url:String) {
+    var popularsBehavior = PublishSubject<[Game]>()
+    var metacriticBehavior = PublishSubject<[Game]>()
+    func fetchPopularGames(url:String) {
         AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
             
             switch response.result {
             case .success(let data):
               
-                self.detailsBehavior.onNext(data.results)
+                self.popularsBehavior.onNext(data.results)
                 
                 
             case .failure(let error):
                 print(error)
             }
         }
-        
     }
-    
+    func fetchMetacriticGames(url:String) {
+        AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
+            
+            switch response.result {
+            case .success(let data):
+              
+                self.metacriticBehavior.onNext(data.results)
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 }
