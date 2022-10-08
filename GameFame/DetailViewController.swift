@@ -7,7 +7,7 @@
 
 import UIKit
 import RxSwift
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     @IBOutlet weak var developerName: UILabel!
     @IBOutlet weak var gameName: UILabel!
@@ -18,5 +18,10 @@ class DetailViewController: UIViewController {
         gameName.text = game
     }
   
+    
+    func binding() {
+        NetworkService().fetchGameDetails(gameID: <#T##String#>)
+        
+    }
 
 }
