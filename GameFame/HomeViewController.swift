@@ -31,6 +31,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         TopRated.rx.setDelegate(self).disposed(by: bag)
         network.popularsBehavior.bind(to: TopRated.rx.items(cellIdentifier: "TopRatedCollectionViewCell",cellType: TopRatedCollectionViewCell.self)) {
             section,item,cell in
+            
             cell.gameName.text = item.name
             cell.gameImage.sd_setImage(with: URL(string: item.background_image))
         }.disposed(by: bag)
@@ -38,7 +39,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         TopRated.rx.modelSelected(Game.self)
             .subscribe { game in
                 let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                detailVC.game = game.name
+                
+                detailVC.slug = game.slug
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }.disposed(by: bag)
         
