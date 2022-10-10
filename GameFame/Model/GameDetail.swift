@@ -20,6 +20,7 @@ struct GameDetail:Codable {
         let developers: [Developers]
         let released: String?
         let publishers: [Publishers]
+        let website : String
     }
 
     struct Rating: Codable {

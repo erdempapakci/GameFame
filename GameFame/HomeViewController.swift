@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SDWebImage
+
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var metaCritic: UICollectionView!
@@ -50,10 +51,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         metaCritic.rx.setDelegate(self).disposed(by: bag)
         network.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
             section,item,cell in
+            
             cell.gameName.text = item.name
             cell.gameImage.sd_setImage(with: URL(string: item.background_image))
         }.disposed(by: bag)
-       
         
     }
     
