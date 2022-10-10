@@ -33,12 +33,6 @@
                             <constraint firstAttribute="width" constant="300" id="yHM-VX-YV5"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izi-ZH-rgM">
-                        <rect key="frame" x="77" y="32" width="146" height="96"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="play.circle" catalog="system"/>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -60,7 +54,4 @@
             <point key="canvasLocation" x="130.76923076923077" y="-11.374407582938389"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="play.circle" catalog="system" width="128" height="123"/>
-    </resources>
 </document>

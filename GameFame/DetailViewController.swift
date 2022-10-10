@@ -28,7 +28,8 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     private var network = NetworkService()
     private var bag = DisposeBag()
     var slug = String()
-    
+    var url = String()
+    var trailer = [GameTrailer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,9 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         bindingGenresCollectionView()
         bindingImageCollectionView()
         bindingTrailerCollectionView()
-        
-        
+        bindPlatform()
+       
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -47,7 +49,12 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.numberOfPages = 6
     }
   
-    
+    @IBAction func storeButtonClicked(_ sender: Any) {
+        if let url = URL(string: self.url) {
+            UIApplication.shared.open(url, completionHandler: nil)
+        }
+    }
+
    private func bindingUI() {
        
         network.fetchGameDetails(gameID: slug)
@@ -63,14 +70,16 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: bag)
     
     }
+    
     private func bindPlatform() {
         network.fetchGameStores(gameID: slug)
         network.platformsBehavior.bind { platforms in
-            
+            self.url = platforms.first!.url
+        
         }.disposed(by: bag)
         
     }
-    
+   
     
    private func bindingImageCollectionView() {
         network.fetchGameScreenShots(gameID: slug)
@@ -78,32 +87,34 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         network.screenShotBehavior.bind(to: imageCollectionView.rx.items(cellIdentifier: "ScreenShotCollectionViewCell",cellType: ScreenShotCollectionViewCell.self)) {
             section,item,cell in
             
-            
             cell.SSImage.sd_setImage(with: URL(string: item.image))
             
         }.disposed(by: bag)
      
     }
+    
     private func bindingTrailerCollectionView() {
          network.fetchGameTrailers(gameID: slug)
          trailersCollectionView.rx.setDelegate(self).disposed(by: bag)
          network.trailerBehavior.bind(to: trailersCollectionView.rx.items(cellIdentifier: "TrailersCollectionViewCell",cellType: TrailersCollectionViewCell.self)) {
              section,item,cell in
-             cell.trailerImage.sd_setImage(with: URL(string: item.preview))
-             cell.trailerLink = item.data.max
-            /* let video = URL(string: item.data.max)
-             let player = AVPlayer(url: video!)
-             let playerVC = AVPlayerViewController()
-             playerVC.player = player
-             self.present(playerVC, animated: true) {
-                 playerVC.player!.play()
-                 player.volume = 0.5
+             if section == 11 {
+                 cell.playButton.isHidden = true
              }
-             */
          }.disposed(by: bag)
-        
+    
         
      }
+ 
+    @IBAction func backButtonClicked(_ sender: Any) {
+    
+    
+        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+    
+        self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+    
     private func bindingGenresCollectionView() {
       
         network.fetchGameDetails(gameID: slug)
