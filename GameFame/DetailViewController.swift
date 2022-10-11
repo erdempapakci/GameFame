@@ -27,6 +27,7 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     private var network = NetworkService()
     private var bag = DisposeBag()
+    
     var slug = String()
     var url = String()
     var trailer = [GameTrailer]()
@@ -103,7 +104,6 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
              }
          }.disposed(by: bag)
     
-        
      }
  
     @IBAction func backButtonClicked(_ sender: Any) {
