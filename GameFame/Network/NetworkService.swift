@@ -19,6 +19,8 @@ class NetworkService {
     var trailerBehavior = PublishSubject<[GameTrailer]>()
     var genresBehavior = PublishSubject<[Genres]>()
     var platformsBehavior = PublishSubject<[GameStore]>()
+    var gameNewsBehavior = PublishSubject<[GameNews]>()
+    
     private let bag = DisposeBag()
     
     internal func fetchPopularGames(url:String) {
@@ -104,6 +106,30 @@ class NetworkService {
             switch response.result {
             case .success(let stores):
                 self.platformsBehavior.onNext(stores.results)
+            case .failure(let error):
+                print(error)
+                
+            }
+            
+        }
+
+    }
+    internal func fetchGameNews() {
+       
+        let headers = [
+            "X-RapidAPI-Key": "75f022546bmsh2ab473fa3a242e1p132949jsn7bc42c64069c",
+            "X-RapidAPI-Host": "videogames-news2.p.rapidapi.com"
+        ]
+        
+        var request = URLRequest(url: URL(string: "https://videogames-news2.p.rapidapi.com/videogames_news/recent")!)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+       
+        AF.request(request).responseDecodable(of:[GameNews].self) { response in
+            switch response.result {
+            case .success(let news):
+                self.gameNewsBehavior.onNext(news)
+                
             case .failure(let error):
                 print(error)
                 
