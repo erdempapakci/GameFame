@@ -238,8 +238,7 @@
                                 <rect key="frame" x="0.0" y="121" width="390" height="640"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="layoutMargins" id="OBg-g5-oT6">
-                                    <size key="itemSize" width="195" height="195"/>
-                                    <size key="estimatedItemSize" width="180" height="195"/>
+                                    <size key="itemSize" width="185" height="195"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -683,10 +682,37 @@
                     <view key="view" contentMode="scaleToFill" id="bAV-q3-iME">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-p7-zkJ">
+                                <rect key="frame" x="0.0" y="109" width="390" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="e8C-Qy-k8v" id="zpj-bR-FXI"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="obn-76-4n1">
+                                <rect key="frame" x="0.0" y="153" width="390" height="608"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Puv-fW-NOd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Puv-fW-NOd" firstAttribute="bottom" secondItem="MWp-p7-zkJ" secondAttribute="bottom" constant="608" id="1Th-rT-ZXw"/>
+                            <constraint firstItem="Puv-fW-NOd" firstAttribute="trailing" secondItem="obn-76-4n1" secondAttribute="trailing" id="1mO-5G-BDY"/>
+                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="trailing" secondItem="Puv-fW-NOd" secondAttribute="trailing" id="2iX-qk-Zj0"/>
+                            <constraint firstItem="obn-76-4n1" firstAttribute="top" secondItem="MWp-p7-zkJ" secondAttribute="bottom" id="9ia-n9-wEk"/>
+                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="Bxd-yY-Aad"/>
+                            <constraint firstItem="obn-76-4n1" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="WUg-aC-byj"/>
+                            <constraint firstItem="Puv-fW-NOd" firstAttribute="bottom" secondItem="obn-76-4n1" secondAttribute="bottom" id="ZSj-Kt-wld"/>
+                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="top" secondItem="Puv-fW-NOd" secondAttribute="top" constant="62" id="bqN-Nv-8YM"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="x98-la-cJ4"/>
+                    <connections>
+                        <outlet property="searchBar" destination="MWp-p7-zkJ" id="Clo-HM-rra"/>
+                        <outlet property="searchTableView" destination="obn-76-4n1" id="XN5-9A-coZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fv-Wl-rgo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

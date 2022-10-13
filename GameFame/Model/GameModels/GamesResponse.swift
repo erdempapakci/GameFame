@@ -12,7 +12,7 @@ struct GamesResponse: Codable {
 }
 
 struct Game: Codable {
-    let name: String
+    let name: String?
     let slug: String
     let background_image: String
     let metacritic: Int?

@@ -8,12 +8,11 @@
 import UIKit
 @IBDesignable
 class CardView : UIView {
+    
     var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
-        
-       
-        
+     
         @IBInspectable var cornerRadius: CGFloat = 0 {
             didSet {
                 layer.cornerRadius = cornerRadius
@@ -33,11 +32,9 @@ class CardView : UIView {
                 setGradient()
             }
         }
-        
-        
+       
         func setGradient() {
-            
-     
+         
             let gradientLocations = [0.0,1.0]
             let gradientLayer = CAGradientLayer()
             if fromColor != nil && toColor != nil
@@ -49,8 +46,6 @@ class CardView : UIView {
             
             gradientLayer.frame = self.bounds
             self.layer.insertSublayer(gradientLayer, at: 0)
-
-            
 
         }
 }
