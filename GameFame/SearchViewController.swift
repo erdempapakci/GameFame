@@ -6,24 +6,36 @@
 //
 
 import UIKit
-
-class SearchViewController: UIViewController {
-
+import RxSwift
+import RxCocoa
+import RxDataSources
+class SearchViewController: UIViewController, UIScrollViewDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchTableView: UITableView!
+    
+    private let bag = DisposeBag()
+    private let network = NetworkService()
+    fileprivate var tweets = [Game]()
+    fileprivate var filteredTweets = [Game]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        bindTableView()
+        searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func bindTableView() {
+        
+        
+        searchTableView.rx.setDelegate(self).disposed(by: bag)
+        
+     
     }
-    */
-
 }
+
+
+
+
+
+
+
