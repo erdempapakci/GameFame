@@ -632,7 +632,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMc-Ha-KfK">
-                                <rect key="frame" x="10" y="700" width="80" height="71"/>
+                                <rect key="frame" x="10" y="700" width="80" height="80"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="arrow.backward.circle" catalog="system" symbolScale="large"/>
@@ -683,40 +683,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-p7-zkJ">
-                                <rect key="frame" x="0.0" y="109" width="390" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="e8C-Qy-k8v" id="zpj-bR-FXI"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="obn-76-4n1">
-                                <rect key="frame" x="0.0" y="153" width="390" height="608"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-1B-2iL">
+                                <rect key="frame" x="0.0" y="117" width="390" height="644"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search Game" translatesAutoresizingMaskIntoConstraints="NO" id="2Fk-ka-eDG">
+                                <rect key="frame" x="0.0" y="73" width="390" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Puv-fW-NOd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Puv-fW-NOd" firstAttribute="bottom" secondItem="MWp-p7-zkJ" secondAttribute="bottom" constant="608" id="1Th-rT-ZXw"/>
-                            <constraint firstItem="Puv-fW-NOd" firstAttribute="trailing" secondItem="obn-76-4n1" secondAttribute="trailing" id="1mO-5G-BDY"/>
-                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="trailing" secondItem="Puv-fW-NOd" secondAttribute="trailing" id="2iX-qk-Zj0"/>
-                            <constraint firstItem="obn-76-4n1" firstAttribute="top" secondItem="MWp-p7-zkJ" secondAttribute="bottom" id="9ia-n9-wEk"/>
-                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="Bxd-yY-Aad"/>
-                            <constraint firstItem="obn-76-4n1" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="WUg-aC-byj"/>
-                            <constraint firstItem="Puv-fW-NOd" firstAttribute="bottom" secondItem="obn-76-4n1" secondAttribute="bottom" id="ZSj-Kt-wld"/>
-                            <constraint firstItem="MWp-p7-zkJ" firstAttribute="top" secondItem="Puv-fW-NOd" secondAttribute="top" constant="62" id="bqN-Nv-8YM"/>
+                            <constraint firstItem="fw4-1B-2iL" firstAttribute="top" secondItem="Puv-fW-NOd" secondAttribute="top" constant="70" id="HmK-Dv-prz"/>
+                            <constraint firstItem="2Fk-ka-eDG" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="MAS-cm-SMu"/>
+                            <constraint firstItem="fw4-1B-2iL" firstAttribute="leading" secondItem="Puv-fW-NOd" secondAttribute="leading" id="hda-0D-f05"/>
+                            <constraint firstItem="2Fk-ka-eDG" firstAttribute="top" secondItem="Puv-fW-NOd" secondAttribute="top" constant="26" id="jbX-6C-NIh"/>
+                            <constraint firstItem="fw4-1B-2iL" firstAttribute="top" secondItem="2Fk-ka-eDG" secondAttribute="bottom" id="jqr-qP-rRU"/>
+                            <constraint firstItem="2Fk-ka-eDG" firstAttribute="trailing" secondItem="Puv-fW-NOd" secondAttribute="trailing" id="ncN-gx-cpb"/>
+                            <constraint firstItem="fw4-1B-2iL" firstAttribute="bottom" secondItem="Puv-fW-NOd" secondAttribute="bottom" id="w8m-4i-i2y"/>
+                            <constraint firstItem="fw4-1B-2iL" firstAttribute="trailing" secondItem="Puv-fW-NOd" secondAttribute="trailing" id="xZA-Vz-S6v"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="x98-la-cJ4"/>
                     <connections>
-                        <outlet property="searchBar" destination="MWp-p7-zkJ" id="Clo-HM-rra"/>
-                        <outlet property="searchTableView" destination="obn-76-4n1" id="XN5-9A-coZ"/>
+                        <outlet property="searchBar" destination="2Fk-ka-eDG" id="wvW-b0-6hu"/>
+                        <outlet property="searchTableView" destination="fw4-1B-2iL" id="GCx-Lv-0wc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fv-Wl-rgo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1837" y="-843"/>
+            <point key="canvasLocation" x="1836.9230769230769" y="-843.12796208530801"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="V0r-Bc-yhS">

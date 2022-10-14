@@ -139,17 +139,18 @@ class NetworkService {
         }
 
     }
+    
     internal func fetchGameWithSearch(with query: String) {
      
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         
         guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&page_size=20&search=\(query)") else { return }
         
-        
-        AF.request(url, method: .get).responseDecodable(of:GameStoreResponse.self) { response in
+        AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
             switch response.result {
             case .success(let search):
-                self.platformsBehavior.onNext(search.results)
+                
+                self.gameSearchBehavior.onNext(search.results)
             case .failure(let error):
                 print(error)
                 
@@ -157,5 +158,5 @@ class NetworkService {
             
         }
     }
-  
+ 
 }

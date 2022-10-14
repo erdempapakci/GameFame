@@ -11,6 +11,7 @@
 		C327566728F3883E00D2D0C6 /* TrailersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C327566528F3883E00D2D0C6 /* TrailersCollectionViewCell.xib */; };
 		C344F19E28ED9BD900F02C76 /* GamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344F19D28ED9BD900F02C76 /* GamesResponse.swift */; };
 		C344F1A028ED9BED00F02C76 /* GameDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344F19F28ED9BED00F02C76 /* GameDetail.swift */; };
+		C34B99D228F9B6EE0038B308 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34B99D128F9B6EE0038B308 /* SearchViewModel.swift */; };
 		C372706728F58DC5008371F2 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372706628F58DC5008371F2 /* CategoryViewController.swift */; };
 		C3A38CAA28F43230006CC79F /* GenresCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A38CA828F43230006CC79F /* GenresCollectionViewCell.swift */; };
 		C3A38CAB28F43230006CC79F /* GenresCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A38CA928F43230006CC79F /* GenresCollectionViewCell.xib */; };
@@ -21,6 +22,8 @@
 		C3AFDEDC28F0753C00B89907 /* MetaCriticCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDEDA28F0753C00B89907 /* MetaCriticCollectionViewCell.swift */; };
 		C3AFDEDD28F0753C00B89907 /* MetaCriticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDEDB28F0753C00B89907 /* MetaCriticCollectionViewCell.xib */; };
 		C3AFDEDF28F090BC00B89907 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */; };
+		C3B44CCB28F8A9C4002F99A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B44CC928F8A9C4002F99A6 /* SearchTableViewCell.swift */; };
+		C3B44CCC28F8A9C4002F99A6 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B44CCA28F8A9C4002F99A6 /* SearchTableViewCell.xib */; };
 		C3B76B2628EEE51D00C93A26 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C3B76B2528EEE51D00C93A26 /* Alamofire */; };
 		C3B76B2828EEEE5E00C93A26 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B76B2728EEEE5E00C93A26 /* NetworkService.swift */; };
 		C3B76B2C28EEF26E00C93A26 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B76B2B28EEF26E00C93A26 /* APIConstants.swift */; };
@@ -52,9 +55,6 @@
 		C3DE10ED28EC9D4400568560 /* UpComingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10EB28EC9D4400568560 /* UpComingCollectionViewCell.swift */; };
 		C3DE10EE28EC9D4400568560 /* UpComingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DE10EC28EC9D4400568560 /* UpComingCollectionViewCell.xib */; };
 		C3F0DE4F28F35FC200FE0F07 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0DE4E28F35FC200FE0F07 /* EndPoints.swift */; };
-		C3F7E42D28F723EB00AABCC3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7E42B28F723EB00AABCC3 /* SearchTableViewCell.swift */; };
-		C3F7E42E28F723EB00AABCC3 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3F7E42C28F723EB00AABCC3 /* SearchTableViewCell.xib */; };
-		C3F7E43028F72AFC00AABCC3 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7E42F28F72AFC00AABCC3 /* SearchViewModel.swift */; };
 		E729130D94832434EE3E3A6F /* Pods_GameFame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AF683B89AB245690B55809 /* Pods_GameFame.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +66,7 @@
 		C327566528F3883E00D2D0C6 /* TrailersCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailersCollectionViewCell.xib; sourceTree = "<group>"; };
 		C344F19D28ED9BD900F02C76 /* GamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesResponse.swift; sourceTree = "<group>"; };
 		C344F19F28ED9BED00F02C76 /* GameDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetail.swift; sourceTree = "<group>"; };
+		C34B99D128F9B6EE0038B308 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C372706628F58DC5008371F2 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C3A38CA828F43230006CC79F /* GenresCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3A38CA928F43230006CC79F /* GenresCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -76,6 +77,8 @@
 		C3AFDEDA28F0753C00B89907 /* MetaCriticCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaCriticCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3AFDEDB28F0753C00B89907 /* MetaCriticCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetaCriticCollectionViewCell.xib; sourceTree = "<group>"; };
 		C3AFDEDE28F090BC00B89907 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C3B44CC928F8A9C4002F99A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C3B44CCA28F8A9C4002F99A6 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		C3B76B2728EEEE5E00C93A26 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C3B76B2B28EEF26E00C93A26 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		C3B76B3428EEFEFD00C93A26 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
@@ -107,9 +110,6 @@
 		C3DE10EB28EC9D4400568560 /* UpComingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3DE10EC28EC9D4400568560 /* UpComingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpComingCollectionViewCell.xib; sourceTree = "<group>"; };
 		C3F0DE4E28F35FC200FE0F07 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
-		C3F7E42B28F723EB00AABCC3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		C3F7E42C28F723EB00AABCC3 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
-		C3F7E42F28F72AFC00AABCC3 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +265,8 @@
 				C3BD3F6628F5D22A00F9B817 /* CategoryCollectionViewCell.swift */,
 				C3BD3F6728F5D22A00F9B817 /* CategoryCollectionViewCell.xib */,
 				C3D401B528F6E44700B20A92 /* SheetViewController.swift */,
+				C3B44CC928F8A9C4002F99A6 /* SearchTableViewCell.swift */,
+				C3B44CCA28F8A9C4002F99A6 /* SearchTableViewCell.xib */,
 				C3D401B928F6E54700B20A92 /* Sheet.storyboard */,
 				C3AFDED828F04A2E00B89907 /* CustomTabBar */,
 				C3B76B3328EEFEDA00C93A26 /* Utils */,
@@ -274,9 +276,7 @@
 				C3DE10E028EC8F4E00568560 /* CustomCells */,
 				C3DE10CF28EC7B5E00568560 /* Main.storyboard */,
 				C3AFDED428F0432400B89907 /* SearchViewController.swift */,
-				C3F7E42F28F72AFC00AABCC3 /* SearchViewModel.swift */,
-				C3F7E42B28F723EB00AABCC3 /* SearchTableViewCell.swift */,
-				C3F7E42C28F723EB00AABCC3 /* SearchTableViewCell.xib */,
+				C34B99D128F9B6EE0038B308 /* SearchViewModel.swift */,
 				C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */,
 				C3DE10DA28EC7B5E00568560 /* Info.plist */,
 				C3DE10D728EC7B5E00568560 /* LaunchScreen.storyboard */,
@@ -406,7 +406,7 @@
 				C3DE10D128EC7B5E00568560 /* Main.storyboard in Resources */,
 				C327566728F3883E00D2D0C6 /* TrailersCollectionViewCell.xib in Resources */,
 				C3BD3F6928F5D22A00F9B817 /* CategoryCollectionViewCell.xib in Resources */,
-				C3F7E42E28F723EB00AABCC3 /* SearchTableViewCell.xib in Resources */,
+				C3B44CCC28F8A9C4002F99A6 /* SearchTableViewCell.xib in Resources */,
 				C3DE10EE28EC9D4400568560 /* UpComingCollectionViewCell.xib in Resources */,
 				C3BD3F6D28F6096300F9B817 /* NewsCollectionViewCell.xib in Resources */,
 			);
@@ -479,7 +479,7 @@
 				C3B76B3528EEFEFD00C93A26 /* UIView + Extensions.swift in Sources */,
 				C3AFDEDF28F090BC00B89907 /* DetailViewController.swift in Sources */,
 				C3BD3F6C28F6096300F9B817 /* NewsCollectionViewCell.swift in Sources */,
-				C3F7E43028F72AFC00AABCC3 /* SearchViewModel.swift in Sources */,
+				C34B99D228F9B6EE0038B308 /* SearchViewModel.swift in Sources */,
 				C3C83C0728F3869900B06780 /* GameTrailerResponse.swift in Sources */,
 				C372706728F58DC5008371F2 /* CategoryViewController.swift in Sources */,
 				C3CDB91928ECAA9800AD0612 /* PlatformsCollectionViewCell.swift in Sources */,
@@ -491,7 +491,7 @@
 				C344F19E28ED9BD900F02C76 /* GamesResponse.swift in Sources */,
 				C3DE10CC28EC7B5E00568560 /* SceneDelegate.swift in Sources */,
 				C3C83C0128F3680800B06780 /* GameScreenShotResponse.swift in Sources */,
-				C3F7E42D28F723EB00AABCC3 /* SearchTableViewCell.swift in Sources */,
+				C3B44CCB28F8A9C4002F99A6 /* SearchTableViewCell.swift in Sources */,
 				C3C83C0428F371BF00B06780 /* ScreenShotCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
