@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxg-Om-4mY">
-                        <rect key="frame" x="3" y="3" width="44" height="15"/>
+                        <rect key="frame" x="1" y="1" width="48" height="19"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKA-8H-UpE">
-                                <rect key="frame" x="10" y="2" width="24" height="11"/>
+                                <rect key="frame" x="12" y="4" width="24" height="11"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -37,10 +37,10 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="vxg-Om-4mY" secondAttribute="bottom" constant="3" id="E3B-9y-9Yu"/>
-                <constraint firstItem="vxg-Om-4mY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="FX8-f1-vKJ"/>
-                <constraint firstItem="vxg-Om-4mY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="WX0-gN-UnO"/>
-                <constraint firstAttribute="trailing" secondItem="vxg-Om-4mY" secondAttribute="trailing" constant="3" id="mKU-sR-Dgm"/>
+                <constraint firstAttribute="bottom" secondItem="vxg-Om-4mY" secondAttribute="bottom" constant="1" id="E3B-9y-9Yu"/>
+                <constraint firstItem="vxg-Om-4mY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="FX8-f1-vKJ"/>
+                <constraint firstItem="vxg-Om-4mY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="WX0-gN-UnO"/>
+                <constraint firstAttribute="trailing" secondItem="vxg-Om-4mY" secondAttribute="trailing" constant="1" id="mKU-sR-Dgm"/>
             </constraints>
             <connections>
                 <outlet property="genreLabel" destination="HKA-8H-UpE" id="QeE-Rg-z3F"/>

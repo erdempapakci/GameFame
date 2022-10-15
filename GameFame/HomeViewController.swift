@@ -77,8 +77,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         network.gameNewsBehavior.bind(to: newsCollection.rx.items(cellIdentifier: "NewsCollectionViewCell",cellType: NewsCollectionViewCell.self)) {
             section,item,cell in
             cell.newsImage.sd_setImage(with: URL(string: item.image))
-            
-            
+      
         }.disposed(by: bag)
         
         newsCollection.rx.modelSelected(GameNews.self)
@@ -116,6 +115,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         performSegue(withIdentifier: "fromHometoCategory", sender: nil)
     }
-    
+
 }
 

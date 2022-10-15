@@ -59,8 +59,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
                 
                 let main = UIStoryboard(name: "Main", bundle: nil)
                 let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                
+           
                 print(game.slug)
                 
                 detailVC.slug = game.slug

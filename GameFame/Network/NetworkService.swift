@@ -31,8 +31,7 @@ class NetworkService {
             case .success(let data):
               
                 self.popularsBehavior.onNext(data.results)
-                
-                
+             
             case .failure(let error):
                 print(error)
             }
