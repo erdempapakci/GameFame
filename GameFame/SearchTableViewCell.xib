@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,24 +16,57 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFc-7O-47H" customClass="CardView" customModule="GameFame" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="206" height="200"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmN-mO-XlX" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                        <rect key="frame" x="214" y="152" width="162" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toa-OZ-fE8">
-                                <rect key="frame" x="0.0" y="0.0" width="206" height="200"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-4s-qiM">
+                                <rect key="frame" x="27" y="-2" width="72" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKA-fo-adn">
+                                <rect key="frame" x="98" y="8" width="38" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.057697974149999998" green="0.1789989769" blue="0.2456589341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
+                        <rect key="frame" x="224" y="21" width="146" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFc-7O-47H" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="10" width="206" height="181"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toa-OZ-fE8">
+                                <rect key="frame" x="0.0" y="8" width="206" height="184"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="5Mp-b5-R3z"/>
-                                    <constraint firstAttribute="width" secondItem="toa-OZ-fE8" secondAttribute="height" multiplier="103:100" id="6e5-vC-Cpv"/>
+                                    <constraint firstAttribute="height" constant="184" id="5Mp-b5-R3z"/>
+                                    <constraint firstAttribute="width" secondItem="toa-OZ-fE8" secondAttribute="height" multiplier="103:100" constant="16.47999999999999" id="6e5-vC-Cpv"/>
                                     <constraint firstAttribute="width" constant="206" id="zf6-wg-Zx3"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="toa-OZ-fE8" secondAttribute="bottom" id="5Wb-br-NqI"/>
+                            <constraint firstAttribute="bottom" secondItem="toa-OZ-fE8" secondAttribute="bottom" constant="-11" id="5Wb-br-NqI"/>
                             <constraint firstItem="toa-OZ-fE8" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="leading" id="BiR-tV-7eQ"/>
                             <constraint firstAttribute="trailing" secondItem="toa-OZ-fE8" secondAttribute="trailing" id="rqf-xO-Umo"/>
-                            <constraint firstItem="toa-OZ-fE8" firstAttribute="top" secondItem="rFc-7O-47H" secondAttribute="top" id="xJV-KO-FFQ"/>
+                            <constraint firstItem="toa-OZ-fE8" firstAttribute="top" secondItem="rFc-7O-47H" secondAttribute="top" constant="8" id="xJV-KO-FFQ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -42,32 +74,23 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
-                        <rect key="frame" x="220" y="8" width="156" height="119"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="rFc-7O-47H" secondAttribute="bottom" id="K9C-h5-R43"/>
+                    <constraint firstAttribute="bottom" secondItem="rFc-7O-47H" secondAttribute="bottom" constant="9" id="K9C-h5-R43"/>
                     <constraint firstItem="rFc-7O-47H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qiG-6x-pP4"/>
                     <constraint firstAttribute="trailing" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="184" id="qsZ-h8-uqd"/>
-                    <constraint firstItem="rFc-7O-47H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="u0p-5L-n6c"/>
+                    <constraint firstItem="rFc-7O-47H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="u0p-5L-n6c"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="RatingView" destination="qmN-mO-XlX" id="0Im-jf-3Ah"/>
                 <outlet property="gameImage" destination="toa-OZ-fE8" id="1dw-iJ-YKk"/>
                 <outlet property="gameName" destination="iy5-dS-yFl" id="dhh-cN-dqX"/>
+                <outlet property="scoreLabel" destination="EKA-fo-adn" id="Cbq-XE-di2"/>
             </connections>
             <point key="canvasLocation" x="130.76923076923077" y="-11.374407582938389"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

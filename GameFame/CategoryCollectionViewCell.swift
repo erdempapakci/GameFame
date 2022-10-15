@@ -13,7 +13,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var gameImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
 }

@@ -14,7 +14,7 @@ class CustomTabBarController: UITabBarController {
         setupMiddleButton()
         }
 
-        func setupMiddleButton() {
+       private func setupMiddleButton() {
             let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 64))
             var menuButtonFrame = menuButton.frame
             menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50

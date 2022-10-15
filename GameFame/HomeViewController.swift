@@ -62,6 +62,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             cell.gameImage.sd_setImage(with: URL(string: item.background_image))
         }.disposed(by: bag)
         
+        metaCritic.rx.modelSelected(Game.self)
+            .subscribe { game in
+                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                detailVC.slug = game.slug
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }.disposed(by: bag)
+    
     }
     private func bindingNews() {
         self.network.fetchGameNews()
@@ -98,9 +106,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
    
     @IBAction func categoryButtonClicked(_ sender: Any) {
+        let categoryVC = self.storyboard?.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        
+        categoryVC.title = "POPULAR GAMES"
+        self.navigationController?.pushViewController(categoryVC, animated: true)
+ 
+    }
+    @IBAction func ratedButtonClicked(_ sender: Any) {
+        
         performSegue(withIdentifier: "fromHometoCategory", sender: nil)
     }
-    
     
 }
 

@@ -32,18 +32,17 @@ class SheetViewController: UIViewController, UISheetPresentationControllerDelega
         newsImage.isUserInteractionEnabled = true
         
     }
-    func createContextMenu() -> UIMenu {
+    
+    private func createContextMenu() -> UIMenu {
             let urlAction = UIAction(title: "Go to Adress", image: UIImage(systemName: "link")) { _ in
                 if let url = URL(string: self.newsUrl) {
                     UIApplication.shared.open(url, completionHandler: nil)
                 }
             }
-          
-         
+        
             return UIMenu(title: "More", children: [urlAction])
         }
-    
-
+  
 }
 extension SheetViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
