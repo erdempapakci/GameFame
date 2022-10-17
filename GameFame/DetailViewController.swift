@@ -11,8 +11,13 @@ import RxSwift
 import AVFoundation
 import AVKit
 
+
+
+
 final class DetailViewController: UIViewController, UIScrollViewDelegate {
-   
+    
+    @IBOutlet weak var buttonView: UIView!
+    @IBOutlet weak var LottieView: CardView!
     @IBOutlet weak var websiteLbl: UILabel!
     @IBOutlet weak var publisherLbl: UILabel!
     @IBOutlet weak var genresCollectionView: UICollectionView!
@@ -26,21 +31,28 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
   
+  
     private var network = NetworkService()
     private var bag = DisposeBag()
     
     var slug = String()
     var url = String()
     var trailer = [GameTrailer]()
+    let likeButton : LikeButton = {
+            let button = LikeButton()
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+            return button
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         registerCells()
         bindingUI()
         bindingGenresCollectionView()
         bindingImageCollectionView()
-        
+        setViewConstraints()
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -48,6 +60,45 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.numberOfPages = 6
     }
   
+    func setViewConstraints() {
+            view.addSubview(likeButton)
+            likeButton.translatesAutoresizingMaskIntoConstraints = false
+            likeButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
+            likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+        }
+        
+        @objc func handleLikeButton() {
+            likeButton.flipLikeState()
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func backButtonClicked(_ sender: Any) {
 
@@ -55,6 +106,8 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
   
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
+  
+ 
  
     @IBAction func openURLClicked(_ sender: Any) {
         getPlatformURL()
@@ -137,3 +190,4 @@ extension DetailViewController {
     }
  
 }
+

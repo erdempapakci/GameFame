@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SDWebImage
-
+import SkeletonView
 class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -26,6 +26,16 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         registerCell()
         bindTableView()
         modelSelectedTableView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5 , execute: {
+            for _ in 0..<30 {
+               
+            }
+            
+        })
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
     }
     
     private func bindTableView() {

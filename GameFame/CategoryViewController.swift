@@ -19,6 +19,7 @@ class CategoryViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         registerUI()
         bindingCategory()
     }
