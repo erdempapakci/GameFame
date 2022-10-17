@@ -7,14 +7,11 @@
 
 import UIKit
 
-
 class SearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var gameName: UILabel!
- 
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
- 
     @IBOutlet weak var RatingView: CardView!
     
     override func awakeFromNib() {

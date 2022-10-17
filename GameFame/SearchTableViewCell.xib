@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -47,55 +48,97 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
-                        <rect key="frame" x="224" y="21" width="146" height="68"/>
-                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFc-7O-47H" customClass="CardView" customModule="GameFame" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="10" width="206" height="181"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toa-OZ-fE8">
-                                <rect key="frame" x="0.0" y="8" width="198" height="173"/>
+                                <rect key="frame" x="2" y="2" width="202" height="177"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="173" id="5Mp-b5-R3z"/>
-                                    <constraint firstAttribute="width" secondItem="toa-OZ-fE8" secondAttribute="height" multiplier="103:100" constant="19.810000000000002" id="6e5-vC-Cpv"/>
-                                    <constraint firstAttribute="width" constant="198" id="zf6-wg-Zx3"/>
+                                    <constraint firstAttribute="width" constant="202" id="9et-mV-TTc"/>
+                                    <constraint firstAttribute="width" secondItem="toa-OZ-fE8" secondAttribute="height" multiplier="202:177" id="XSf-Nf-eeI"/>
+                                    <constraint firstAttribute="height" constant="177" id="hlR-dq-X0d"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="toa-OZ-fE8" secondAttribute="bottom" id="5Wb-br-NqI"/>
-                            <constraint firstItem="toa-OZ-fE8" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="leading" id="BiR-tV-7eQ"/>
-                            <constraint firstAttribute="trailing" secondItem="toa-OZ-fE8" secondAttribute="trailing" constant="8" id="rqf-xO-Umo"/>
-                            <constraint firstItem="toa-OZ-fE8" firstAttribute="top" secondItem="rFc-7O-47H" secondAttribute="top" constant="8" id="xJV-KO-FFQ"/>
+                            <constraint firstItem="toa-OZ-fE8" firstAttribute="top" secondItem="rFc-7O-47H" secondAttribute="top" constant="2" id="ENE-qO-FC5"/>
+                            <constraint firstItem="toa-OZ-fE8" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="leading" constant="2" id="UlI-6K-MbB"/>
+                            <constraint firstAttribute="trailing" secondItem="toa-OZ-fE8" secondAttribute="trailing" constant="2" id="n4Z-p1-QUm"/>
+                            <constraint firstAttribute="bottom" secondItem="toa-OZ-fE8" secondAttribute="bottom" constant="2" id="nwM-LU-mAg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocG-N3-jhp">
+                        <rect key="frame" x="325" y="15" width="51" height="35"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JrJ-QN-uKC" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                        <rect key="frame" x="222" y="58" width="154" height="69"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
+                                <rect key="frame" x="0.0" y="0.0" width="154" height="69"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iy5-dS-yFl" secondAttribute="trailing" id="Hbi-wq-dHd"/>
+                            <constraint firstAttribute="bottom" secondItem="iy5-dS-yFl" secondAttribute="bottom" id="jUb-Pi-ZHG"/>
+                            <constraint firstItem="iy5-dS-yFl" firstAttribute="top" secondItem="JrJ-QN-uKC" secondAttribute="top" id="lUT-m9-eCI"/>
+                            <constraint firstItem="iy5-dS-yFl" firstAttribute="leading" secondItem="JrJ-QN-uKC" secondAttribute="leading" id="tpb-6X-9Uo"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="qmN-mO-XlX" firstAttribute="top" secondItem="iy5-dS-yFl" secondAttribute="bottom" constant="63" id="0jG-Xx-tsq"/>
+                    <constraint firstItem="ocG-N3-jhp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="1JH-ss-gUi"/>
+                    <constraint firstItem="JrJ-QN-uKC" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="16" id="8W0-Ij-adx"/>
                     <constraint firstAttribute="bottom" secondItem="qmN-mO-XlX" secondAttribute="bottom" constant="14" id="AiB-xs-L6s"/>
                     <constraint firstAttribute="bottom" secondItem="rFc-7O-47H" secondAttribute="bottom" constant="9" id="K9C-h5-R43"/>
-                    <constraint firstItem="iy5-dS-yFl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="PDf-SP-U9W"/>
-                    <constraint firstItem="iy5-dS-yFl" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="18" id="eqI-4d-GaB"/>
+                    <constraint firstAttribute="trailing" secondItem="JrJ-QN-uKC" secondAttribute="trailing" constant="14" id="R4b-HQ-bQF"/>
+                    <constraint firstAttribute="trailing" secondItem="ocG-N3-jhp" secondAttribute="trailing" constant="14" id="RWq-8B-KUe"/>
                     <constraint firstAttribute="trailing" secondItem="qmN-mO-XlX" secondAttribute="trailing" constant="14" id="ms2-fK-mDF"/>
-                    <constraint firstAttribute="trailing" secondItem="iy5-dS-yFl" secondAttribute="trailing" constant="20" id="mwX-ED-sbJ"/>
                     <constraint firstItem="rFc-7O-47H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qiG-6x-pP4"/>
                     <constraint firstAttribute="trailing" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="184" id="qsZ-h8-uqd"/>
+                    <constraint firstItem="JrJ-QN-uKC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="58" id="raG-sE-Qz5"/>
                     <constraint firstItem="rFc-7O-47H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="u0p-5L-n6c"/>
+                    <constraint firstItem="qmN-mO-XlX" firstAttribute="top" secondItem="JrJ-QN-uKC" secondAttribute="bottom" constant="25" id="z0u-9k-YXp"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="RatingView" destination="qmN-mO-XlX" id="0Im-jf-3Ah"/>
                 <outlet property="gameImage" destination="toa-OZ-fE8" id="1dw-iJ-YKk"/>
@@ -105,4 +148,7 @@
             <point key="canvasLocation" x="130.76923076923077" y="-11.374407582938389"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+    </resources>
 </document>
