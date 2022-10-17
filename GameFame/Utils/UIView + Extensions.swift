@@ -6,10 +6,12 @@
 //
 
 import UIKit
+
+
 @IBDesignable
 class CardView : UIView {
     
-    var fromColor: UIColor?
+        var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
      
@@ -17,6 +19,12 @@ class CardView : UIView {
             didSet {
                 layer.cornerRadius = cornerRadius
                 layer.masksToBounds = cornerRadius > 0
+                self.isSkeletonable = true
+                self.showAnimatedGradientSkeleton()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                    self.hideSkeleton()
+                })
+               
             }
         }
         
@@ -34,7 +42,7 @@ class CardView : UIView {
         }
        
         func setGradient() {
-         
+            
             let gradientLocations = [0.0,1.0]
             let gradientLayer = CAGradientLayer()
             if fromColor != nil && toColor != nil
