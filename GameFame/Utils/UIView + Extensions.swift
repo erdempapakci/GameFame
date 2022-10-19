@@ -9,18 +9,21 @@ import UIKit
 
 
 @IBDesignable
-class CardView : UIView {
+
+
+class CardView : UIView,CardViewProtocol {
     
         var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
-     
+        lazy var skeletonBool = false
         @IBInspectable var cornerRadius: CGFloat = 0 {
             didSet {
                 layer.cornerRadius = cornerRadius
                 layer.masksToBounds = cornerRadius > 0
-                self.isSkeletonable = true
+                self.isSkeletonable = skeletonBool
                 self.showAnimatedGradientSkeleton()
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                     self.hideSkeleton()
                 })
@@ -60,3 +63,7 @@ class CardView : UIView {
 
 
 
+protocol CardViewProtocol {
+    var skeletonBool : Bool {get}
+    
+}

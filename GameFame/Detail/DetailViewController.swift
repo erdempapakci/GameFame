@@ -32,8 +32,10 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageCollectionView: UICollectionView!
   
   
-    private var network = NetworkService()
+   
     private var bag = DisposeBag()
+    
+    private var viewModel = DetailViewModel()
     
     var slug = String()
     var url = String()
@@ -70,36 +72,7 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         @objc func handleLikeButton() {
             likeButton.flipLikeState()
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     @IBAction func backButtonClicked(_ sender: Any) {
 
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
@@ -135,12 +108,14 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
 }
 // DATA BINDING WITH RX
 extension DetailViewController {
+    
     private func bindingGenresCollectionView() {
       
-        network.fetchGameDetails(gameID: slug)
+        
+        viewModel.fetchDetails(slug: slug)
         genresCollectionView.rx.setDelegate(self).disposed(by: bag)
         
-        network.genresBehavior.bind(to: genresCollectionView.rx.items(cellIdentifier: "GenresCollectionViewCell", cellType: GenresCollectionViewCell.self)) {
+        viewModel.genresBehavior.bind(to: genresCollectionView.rx.items(cellIdentifier: "GenresCollectionViewCell", cellType: GenresCollectionViewCell.self)) {
             section, item, cell in
             
             cell.genreLabel.text = item.name
@@ -151,9 +126,10 @@ extension DetailViewController {
      }
     
     private func bindingImageCollectionView() {
-         network.fetchGameScreenShots(gameID: slug)
+         
+        viewModel.fetchGameScreenShots(slug: slug)
          imageCollectionView.rx.setDelegate(self).disposed(by: bag)
-         network.screenShotBehavior.bind(to: imageCollectionView.rx.items(cellIdentifier: "ScreenShotCollectionViewCell",cellType: ScreenShotCollectionViewCell.self)) {
+        viewModel.screenShotBehavior.bind(to: imageCollectionView.rx.items(cellIdentifier: "ScreenShotCollectionViewCell",cellType: ScreenShotCollectionViewCell.self)) {
              section,item,cell in
              
              cell.SSImage.sd_setImage(with: URL(string: item.image))
@@ -164,8 +140,9 @@ extension DetailViewController {
      
     private func bindingUI() {
         
-         network.fetchGameDetails(gameID: slug)
-         network.detailBehavior.bind { gamedetail in
+         
+        viewModel.fetchDetails(slug: slug)
+         viewModel.detailBehavior.bind { gamedetail in
              self.gameName.text = gamedetail.name
              self.websiteLbl.text = gamedetail.website
              self.developerName.text = gamedetail.developers.first?.name
@@ -181,9 +158,9 @@ extension DetailViewController {
      }
     
     private func getPlatformURL() {
-        
-        network.fetchGameStores(gameID: slug)
-        network.platformsBehavior.bind { platform in
+       
+        viewModel.fetchGameStores(slug: slug)
+        viewModel.platformsBehavior.bind { platform in
             self.url = platform.first!.url
             
         }.disposed(by: bag)

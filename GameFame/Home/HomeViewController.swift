@@ -12,6 +12,10 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
+protocol LoadingProtocolOutPut {
+    func changeShimmer(isLoad: Bool)
+}
+
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     
@@ -19,9 +23,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var metaCritic: UICollectionView!
     @IBOutlet weak var TopRated: UICollectionView!
     
-   
+   private var viewModel = HomeViewModel()
+    
     var slug = String()
-    private var network = NetworkService()
     private var bag = DisposeBag()
     private var effect: UIVisualEffect?
     override func viewDidLoad() {
@@ -34,9 +38,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func bindingPopular() {
-        self.network.fetchPopularGames(url: APIConstants.POPULAR_URL)
+    
+        self.viewModel.fetchPopularGames()
         TopRated.rx.setDelegate(self).disposed(by: bag)
-        network.popularsBehavior.bind(to: TopRated.rx.items(cellIdentifier: "TopRatedCollectionViewCell",cellType: TopRatedCollectionViewCell.self)) {
+        viewModel.popularsBehavior.bind(to: TopRated.rx.items(cellIdentifier: "TopRatedCollectionViewCell",cellType: TopRatedCollectionViewCell.self)) {
             section,item,cell in
            
             cell.gameName.text = item.name
@@ -53,9 +58,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
     }
     private func bindingMetaCritic() {
-        self.network.fetchMetacriticGames(url: APIConstants.METACRITIC_URL)
+        
+        self.viewModel.fetchMetacriticGames()
         metaCritic.rx.setDelegate(self).disposed(by: bag)
-        network.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
+        viewModel.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
             section,item,cell in
             
             cell.gameName.text = item.name
@@ -71,10 +77,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             }.disposed(by: bag)
     
     }
+    
     private func bindingNews() {
-        self.network.fetchGameNews()
+        self.viewModel.fetchNews()
         newsCollection.rx.setDelegate(self).disposed(by: bag)
-        network.gameNewsBehavior.bind(to: newsCollection.rx.items(cellIdentifier: "NewsCollectionViewCell",cellType: NewsCollectionViewCell.self)) {
+        viewModel.gameNewsBehavior.bind(to: newsCollection.rx.items(cellIdentifier: "NewsCollectionViewCell",cellType: NewsCollectionViewCell.self)) {
             section,item,cell in
             cell.newsImage.sd_setImage(with: URL(string: item.image))
       
@@ -118,3 +125,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
 }
 
+extension HomeViewController: LoadingProtocolOutPut {
+    func changeShimmer(isLoad: Bool) {
+        
+    }
+    
+    
+}

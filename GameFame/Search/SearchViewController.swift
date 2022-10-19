@@ -10,14 +10,14 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 import SkeletonView
+
 class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     
-    private let network = NetworkService()
     private let bag = DisposeBag()
-    
+    private let viewModel = SearchViewModel()
     private var searchValue = BehaviorRelay<String>(value: "")
     
     override func viewDidLoad() {
@@ -26,28 +26,20 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         registerCell()
         bindTableView()
         modelSelectedTableView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5 , execute: {
-            for _ in 0..<30 {
-               
-            }
-            
-        })
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-       
+        
     }
     
     private func bindTableView() {
         
-        searchValue.subscribe { value in
-            value.map { keke in
-                self.network.fetchGameWithSearch(with: keke)
+        _ = searchValue.subscribe { value in
+            _ = value.map { query in
+                // self.network.fetchGameWithSearch(with: keke)
+                self.viewModel.searchGame(with: query)
                 
             }
         }
         
-        self.network.gameSearchBehavior.bind(to: self.searchTableView.rx.items(cellIdentifier: "SearchTableViewCell",cellType: SearchTableViewCell.self)) {
+        self.viewModel.gameSearchBehavior.bind(to: self.searchTableView.rx.items(cellIdentifier: "SearchTableViewCell",cellType: SearchTableViewCell.self)) {
             section,item,cell in
             
             if item.metacritic == nil {
@@ -60,7 +52,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             cell.gameName.text = item.name
             
         }.disposed(by: self.bag)
-   
+        
     }
     
     private func modelSelectedTableView() {
@@ -69,12 +61,12 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
                 
                 let main = UIStoryboard(name: "Main", bundle: nil)
                 let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-           
+                
                 print(game.slug)
                 
                 detailVC.slug = game.slug
                 self.show(detailVC, sender: self)
-   
+                
             }.disposed(by: bag)
         
     }

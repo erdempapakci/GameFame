@@ -21,6 +21,14 @@ class SheetViewController: UIViewController, UISheetPresentationControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setPresentationView()
+    }
+    private func setPresentationView() {
+        
         sheetPresentationController.delegate = self
         sheetPresentationController.selectedDetentIdentifier = .medium
         sheetPresentationController.prefersGrabberVisible = true

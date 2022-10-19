@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <accessibilityOverrides/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -229,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yar-Wk-jvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769" y="-84"/>
+            <point key="canvasLocation" x="2767.9389312977096" y="-84.507042253521135"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="2hd-zL-13b">
@@ -274,11 +275,11 @@
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="IT8-lv-t9Y" customClass="DetailViewController" customModule="GameFame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sdz-iq-5lU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQK-gf-t3G">
-                                <rect key="frame" x="0.0" y="54" width="393" height="1446"/>
+                                <rect key="frame" x="0.0" y="54" width="393" height="798"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-xJ-Zn8" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="34" width="393" height="1258"/>
@@ -286,8 +287,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hvg-jK-yjo" customClass="CardView" customModule="GameFame" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="15" width="377" height="272"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.line" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-tW-5Nd">
-                                                        <rect key="frame" x="0.0" y="3" width="393" height="267"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-tW-5Nd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="272"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
@@ -350,14 +351,22 @@
                                                         <color key="textColor" red="0.99868875739999996" green="0.99358075859999995" blue="0.94980925319999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZf-1a-an8">
+                                                        <rect key="frame" x="284" y="17" width="50" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.056588081335789193" green="0.17768859256448075" blue="0.24613320707070707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="oZf-1a-an8" secondAttribute="trailing" constant="43" id="EEe-al-cGB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oZf-1a-an8" secondAttribute="bottom" constant="18.333333333333314" id="GSe-Xi-bxr"/>
+                                                    <constraint firstItem="oZf-1a-an8" firstAttribute="leading" secondItem="xLZ-P8-4pJ" secondAttribute="trailing" constant="215" id="Ppv-p1-sus"/>
                                                     <constraint firstItem="2aO-IJ-1tU" firstAttribute="top" secondItem="xLZ-P8-4pJ" secondAttribute="bottom" constant="12.000000000000014" id="Xim-8q-dI9"/>
                                                     <constraint firstItem="xLZ-P8-4pJ" firstAttribute="leading" secondItem="2aO-IJ-1tU" secondAttribute="leading" id="a3V-rr-D7f"/>
                                                     <constraint firstItem="xLZ-P8-4pJ" firstAttribute="leading" secondItem="M7d-0y-uXX" secondAttribute="leading" constant="19" id="bwS-7m-CL8"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2aO-IJ-1tU" secondAttribute="trailing" constant="20" symbolic="YES" id="fQI-tk-ZYo"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xLZ-P8-4pJ" secondAttribute="trailing" symbolic="YES" id="fnd-6x-ek8"/>
+                                                    <constraint firstItem="oZf-1a-an8" firstAttribute="top" secondItem="M7d-0y-uXX" secondAttribute="top" constant="17" id="jrH-JU-ACC"/>
                                                     <constraint firstItem="xLZ-P8-4pJ" firstAttribute="top" secondItem="M7d-0y-uXX" secondAttribute="top" constant="11" id="n2l-wp-Qfz"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -618,7 +627,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMc-Ha-KfK">
-                                <rect key="frame" x="39" y="712" width="54" height="724"/>
+                                <rect key="frame" x="39" y="712" width="54" height="76"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="arrow" symbolScale="large"/>
@@ -643,8 +652,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cao-0f-hwo"/>
-                    <size key="freeformSize" width="393" height="1500"/>
+                    <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="LottieView" destination="M7d-0y-uXX" id="CHQ-UT-skn"/>
+                        <outlet property="buttonView" destination="oZf-1a-an8" id="NWb-hA-IUa"/>
                         <outlet property="descriptionLbl" destination="tPW-z9-ZOc" id="yEt-Ls-xeY"/>
                         <outlet property="descriptionView" destination="wgY-sY-C6l" id="fxP-lS-qHH"/>
                         <outlet property="developerName" destination="2aO-IJ-1tU" id="H3o-x5-6bY"/>
@@ -661,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvA-HE-8eA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4320" y="-645"/>
+            <point key="canvasLocation" x="4319.8473282442746" y="-645.07042253521126"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="ZIh-LI-9vu">
@@ -776,7 +787,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="ZDx-ZX-gl5"/>
+        <segue reference="4z0-Sk-nDT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow" width="30" height="30"/>
@@ -784,7 +795,6 @@
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="pencil.line" catalog="system" width="128" height="98"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -14,6 +14,7 @@ class CategoryViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var categoryCollectio: UICollectionView!
     
     let network = NetworkService()
+    let viewModel = HomeViewModel()
     let bag = DisposeBag()
     var slug = String()
     
@@ -34,9 +35,10 @@ extension CategoryViewController {
     
     private func bindingCategory() {
          if title == "POPULAR GAMES" {
-             self.network.fetchPopularGames(url: APIConstants.POPULAR_URL)
+      //       self.network.fetchPopularGames(url: APIConstants.POPULAR_URL)
+             viewModel.fetchPopularGames()
              categoryCollectio.rx.setDelegate(self).disposed(by: bag)
-             network.popularsBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
+             viewModel.popularsBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
                  section,item,cell in
                  cell.gameName.text = item.name
                  
@@ -44,9 +46,9 @@ extension CategoryViewController {
                  
              }.disposed(by: bag)
          } else {
-             self.network.fetchMetacriticGames(url: APIConstants.METACRITIC_URL)
+             self.viewModel.fetchMetacriticGames()
              categoryCollectio.rx.setDelegate(self).disposed(by: bag)
-             network.metacriticBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
+             viewModel.metacriticBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
                  section,item,cell in
                  cell.gameName.text = item.name
                  cell.gameImage.sd_setImage(with: URL(string: item.background_image))
