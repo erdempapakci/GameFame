@@ -9,7 +9,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class DetailViewModel: DetailViewModelProtocol {
+final class DetailViewModel: DetailViewModelProtocol {
 
     
     var network: NetworkServiceProtocol = NetworkService()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MetaCriticCollectionViewCell: UICollectionViewCell {
+final class MetaCriticCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameName: UILabel!

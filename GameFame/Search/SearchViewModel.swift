@@ -9,20 +9,26 @@ import Foundation
 
 import RxSwift
 
-class SearchViewModel: SearchViewModelProtocol {
+final class SearchViewModel: SearchViewModelProtocol {
 
     lazy var network: NetworkServiceProtocol = NetworkService()
     var gameSearchBehavior = PublishSubject<[Game]>()
+    weak var isLoadedDelegate: ShimmerProtocol?
+   
+    
   
     func searchGame(with slug: String) {
+        self.isLoadedDelegate?.changeShimmer(isLoaded: false)
         network.fetchGameWithSearch(with: slug) {[weak self] response in
-            self?.changeShimmer()
+            self?.isLoadedDelegate?.changeShimmer(isLoaded: false)
             self?.gameSearchBehavior.onNext(response)
+            self?.isLoadedDelegate?.changeShimmer(isLoaded: true)
         }
     }
-    
-    func changeShimmer() {
-        
-    }
 
+}
+protocol ShimmerProtocol: AnyObject {
+    
+    func changeShimmer(isLoaded: Bool)
+    
 }

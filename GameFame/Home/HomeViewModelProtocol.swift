@@ -13,6 +13,5 @@ protocol HomeViewModelProtocol {
     func fetchMetacriticGames()
     func fetchNews()
     func changeShimmer()
-    
-    
+  
 }

@@ -14,6 +14,9 @@
 		C3641FE628FB3A0F0093BD45 /* GameRedditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3641FE528FB3A0F0093BD45 /* GameRedditResponse.swift */; };
 		C372706728F58DC5008371F2 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C372706628F58DC5008371F2 /* CategoryViewController.swift */; };
 		C38FF599290036D800DF80EA /* NewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C38FF5982900352D00DF80EA /* NewsCollectionViewCell.xib */; };
+		C394E5362901901300638911 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394E5352901901300638911 /* CoreDataManager.swift */; };
+		C394E538290196B400638911 /* CoreDataListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394E537290196B400638911 /* CoreDataListViewModel.swift */; };
+		C394E53A2901B91500638911 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C394E5392901B91500638911 /* CoreDataError.swift */; };
 		C3A38CAA28F43230006CC79F /* GenresCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A38CA828F43230006CC79F /* GenresCollectionViewCell.swift */; };
 		C3A38CAB28F43230006CC79F /* GenresCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A38CA928F43230006CC79F /* GenresCollectionViewCell.xib */; };
 		C3A38CAD28F45DB9006CC79F /* GameStoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A38CAC28F45DB9006CC79F /* GameStoreResponse.swift */; };
@@ -54,7 +57,7 @@
 		C3DE10CC28EC7B5E00568560 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10CB28EC7B5E00568560 /* SceneDelegate.swift */; };
 		C3DE10CE28EC7B5E00568560 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */; };
 		C3DE10D128EC7B5E00568560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DE10CF28EC7B5E00568560 /* Main.storyboard */; };
-		C3DE10D428EC7B5E00568560 /* GameFame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10D228EC7B5E00568560 /* GameFame.xcdatamodeld */; };
+		C3DE10D428EC7B5E00568560 /* GameFameData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10D228EC7B5E00568560 /* GameFameData.xcdatamodeld */; };
 		C3DE10D628EC7B5E00568560 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DE10D528EC7B5E00568560 /* Assets.xcassets */; };
 		C3DE10D928EC7B5E00568560 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3DE10D728EC7B5E00568560 /* LaunchScreen.storyboard */; };
 		C3DE10E328EC90ED00568560 /* TopRatedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DE10E128EC90ED00568560 /* TopRatedCollectionViewCell.swift */; };
@@ -74,6 +77,9 @@
 		C3641FE528FB3A0F0093BD45 /* GameRedditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRedditResponse.swift; sourceTree = "<group>"; };
 		C372706628F58DC5008371F2 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C38FF5982900352D00DF80EA /* NewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCollectionViewCell.xib; sourceTree = "<group>"; };
+		C394E5352901901300638911 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C394E537290196B400638911 /* CoreDataListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataListViewModel.swift; sourceTree = "<group>"; };
+		C394E5392901B91500638911 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		C3A38CA828F43230006CC79F /* GenresCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3A38CA928F43230006CC79F /* GenresCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresCollectionViewCell.xib; sourceTree = "<group>"; };
 		C3A38CAC28F45DB9006CC79F /* GameStoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoreResponse.swift; sourceTree = "<group>"; };
@@ -202,10 +208,21 @@
 		C344F19428ED95FD00F02C76 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C3BD3F6F28F60A0200F9B817 /* News */,
+				C3BD3F6F28F60A0200F9B817 /* GameNewModels */,
 				C3BD3F6E28F609E900F9B817 /* GameModels */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C394E52C29016ED900638911 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				C3DE10D228EC7B5E00568560 /* GameFameData.xcdatamodeld */,
+				C394E5352901901300638911 /* CoreDataManager.swift */,
+				C394E5392901B91500638911 /* CoreDataError.swift */,
+				C394E537290196B400638911 /* CoreDataListViewModel.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		C3AFDED828F04A2E00B89907 /* CustomTabBar */ = {
@@ -248,19 +265,19 @@
 			path = GameModels;
 			sourceTree = "<group>";
 		};
-		C3BD3F6F28F60A0200F9B817 /* News */ = {
+		C3BD3F6F28F60A0200F9B817 /* GameNewModels */ = {
 			isa = PBXGroup;
 			children = (
 				C3BD3F7028F60A1C00F9B817 /* GameNews.swift */,
 			);
-			path = News;
+			path = GameNewModels;
 			sourceTree = "<group>";
 		};
 		C3C10588290015E100534077 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */,
 				C3C10591290029AC00534077 /* HomeViewModelProtocol.swift */,
+				C3DE10CD28EC7B5E00568560 /* HomeViewController.swift */,
 				C3C105862900061200534077 /* HomeViewModel.swift */,
 			);
 			path = Home;
@@ -352,6 +369,7 @@
 		C3DE10C828EC7B5E00568560 /* GameFame */ = {
 			isa = PBXGroup;
 			children = (
+				C394E52C29016ED900638911 /* Core Data */,
 				C3165D2429003144006B9BE0 /* Sheet */,
 				C3165D2229003126006B9BE0 /* Category */,
 				C3AFDED828F04A2E00B89907 /* CustomTabBar */,
@@ -369,7 +387,6 @@
 				C3AFDED628F0433000B89907 /* ProfileViewController.swift */,
 				C3DE10DA28EC7B5E00568560 /* Info.plist */,
 				C3DE10D528EC7B5E00568560 /* Assets.xcassets */,
-				C3DE10D228EC7B5E00568560 /* GameFame.xcdatamodeld */,
 			);
 			path = GameFame;
 			sourceTree = "<group>";
@@ -542,7 +559,7 @@
 			files = (
 				C3AFDED528F0432400B89907 /* SearchViewController.swift in Sources */,
 				C3B76B2828EEEE5E00C93A26 /* NetworkService.swift in Sources */,
-				C3DE10D428EC7B5E00568560 /* GameFame.xcdatamodeld in Sources */,
+				C3DE10D428EC7B5E00568560 /* GameFameData.xcdatamodeld in Sources */,
 				C3DE10E328EC90ED00568560 /* TopRatedCollectionViewCell.swift in Sources */,
 				C3C105902900298A00534077 /* SearchViewModel.swift in Sources */,
 				C3BD3F6828F5D22A00F9B817 /* CategoryCollectionViewCell.swift in Sources */,
@@ -565,6 +582,7 @@
 				C344F1A028ED9BED00F02C76 /* GameDetail.swift in Sources */,
 				C3AFDED128F0422500B89907 /* CustomTabBarController.swift in Sources */,
 				C3C105872900061200534077 /* HomeViewModel.swift in Sources */,
+				C394E538290196B400638911 /* CoreDataListViewModel.swift in Sources */,
 				C3DE10CE28EC7B5E00568560 /* HomeViewController.swift in Sources */,
 				C3641FE628FB3A0F0093BD45 /* GameRedditResponse.swift in Sources */,
 				C3C1B24828FD7166000B0AE4 /* CustomLikeButton.swift in Sources */,
@@ -573,11 +591,13 @@
 				C344F19E28ED9BD900F02C76 /* GamesResponse.swift in Sources */,
 				C3C1058B29001C7600534077 /* DetailViewModel.swift in Sources */,
 				C3DE10CC28EC7B5E00568560 /* SceneDelegate.swift in Sources */,
+				C394E5362901901300638911 /* CoreDataManager.swift in Sources */,
 				C3C1058D2900284300534077 /* NetworkServiceProtocol.swift in Sources */,
 				C3C83C0128F3680800B06780 /* GameScreenShotResponse.swift in Sources */,
 				C3B44CCB28F8A9C4002F99A6 /* SearchTableViewCell.swift in Sources */,
 				C3C83C0428F371BF00B06780 /* ScreenShotCollectionViewCell.swift in Sources */,
 				C3C10594290029C800534077 /* DetailViewModelProtocol.swift in Sources */,
+				C394E53A2901B91500638911 /* CoreDataError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,13 +864,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		C3DE10D228EC7B5E00568560 /* GameFame.xcdatamodeld */ = {
+		C3DE10D228EC7B5E00568560 /* GameFameData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C3DE10D328EC7B5E00568560 /* GameFame.xcdatamodel */,
 			);
 			currentVersion = C3DE10D328EC7B5E00568560 /* GameFame.xcdatamodel */;
-			path = GameFame.xcdatamodeld;
+			path = GameFameData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

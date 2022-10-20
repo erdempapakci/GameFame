@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
 
     func fetchGames(url:String, completion: @escaping([Game]) -> Void) {
         
@@ -21,8 +21,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func fetchGameDetails(gameID: String, url: String, completion: @escaping(GameDetail) -> Void) {
-        
-        
+     
         AF.request(url, method: .get).responseDecodable(of:GameDetail.self) { response in
             
             guard let data = response.value else {return}
@@ -86,24 +85,6 @@ class NetworkService: NetworkServiceProtocol {
             completion(data.results)
         }
     }
-    
-    
-    /*
-    func fetchGameWithSearch(with query: String) {
-        
-        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&page_size=20&search=\(query)") else { return }
-        
-        AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
-            switch response.result {
-            case .success(let search):
-                search.results
-                self.gameSearchBehavior.onNext(search.results)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-      */
+ 
 }
 

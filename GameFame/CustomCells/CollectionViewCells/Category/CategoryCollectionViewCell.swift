@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryCollectionViewCell: UICollectionViewCell {
+final class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var gameName: UILabel!
     
     @IBOutlet weak var gameImage: UIImageView!

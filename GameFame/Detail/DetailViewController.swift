@@ -40,16 +40,27 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     var slug = String()
     var url = String()
     var trailer = [GameTrailer]()
-    let likeButton : LikeButton = {
+    
+    
+  
+    
+    private let likeButton : LikeButton = {
             let button = LikeButton()
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
             return button
         }()
     
+    @objc func handleLikeButton() {
+        likeButton.flipLikeState()
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        
         registerCells()
         bindingUI()
         bindingGenresCollectionView()
@@ -62,16 +73,16 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.numberOfPages = 6
     }
   
-    func setViewConstraints() {
+  private  func setViewConstraints() {
+            
             view.addSubview(likeButton)
             likeButton.translatesAutoresizingMaskIntoConstraints = false
+            likeButton.contentMode = .scaleAspectFill
             likeButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
             likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
-        }
         
-        @objc func handleLikeButton() {
-            likeButton.flipLikeState()
         }
+      
 
     @IBAction func backButtonClicked(_ sender: Any) {
 
@@ -120,7 +131,7 @@ extension DetailViewController {
             
             cell.genreLabel.text = item.name
             
-            print(item.name)
+           
             
         }.disposed(by: bag)
      }
@@ -151,7 +162,7 @@ extension DetailViewController {
              self.publisherLbl.text = gamedetail.publishers.first?.name
              self.ratingLbl.text =  String(gamedetail.rating ?? 0)
              
-             print(gamedetail.slug)
+            
              self.mainImage.sd_setImage(with: URL(string: gamedetail.background_image!))
          }.disposed(by: bag)
      

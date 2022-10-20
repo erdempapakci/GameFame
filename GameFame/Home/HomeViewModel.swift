@@ -12,9 +12,7 @@ import RxSwift
 import RxCocoa
 
 
-
-
-class HomeViewModel: HomeViewModelProtocol {
+final class HomeViewModel: HomeViewModelProtocol {
     
     var popularsBehavior = PublishSubject<[Game]>()
     var metacriticBehavior = PublishSubject<[Game]>()

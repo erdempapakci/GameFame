@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ScreenShotCollectionViewCell: UICollectionViewCell {
+final class ScreenShotCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var SSImage: UIImageView!
     

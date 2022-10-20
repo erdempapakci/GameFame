@@ -11,11 +11,11 @@ import RxCocoa
 import SDWebImage
 import SkeletonView
 
-class SearchViewController: UIViewController, UIScrollViewDelegate {
+ final class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
-    
+
     private let bag = DisposeBag()
     private let viewModel = SearchViewModel()
     private var searchValue = BehaviorRelay<String>(value: "")
@@ -47,14 +47,18 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
                 
             }
             
-            cell.scoreLabel.text = String(item.metacritic ?? 0)
-            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-            cell.gameName.text = item.name
+                
+                cell.scoreLabel.text = String(item.metacritic ?? 0)
+                cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+                cell.gameName.text = item.name
+            
+                
+              
             
         }.disposed(by: self.bag)
         
     }
-    
+   
     private func modelSelectedTableView() {
         searchTableView.rx.modelSelected(Game.self)
             .subscribe { game in
@@ -85,4 +89,6 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             .disposed(by: bag)
     }
 }
+
+
 

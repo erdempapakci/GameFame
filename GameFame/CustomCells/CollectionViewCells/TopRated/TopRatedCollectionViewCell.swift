@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopRatedCollectionViewCell: UICollectionViewCell {
+final class TopRatedCollectionViewCell: UICollectionViewCell {
    
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameName: UILabel!

@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class TrailersCollectionViewCell: UICollectionViewCell {
+final class TrailersCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var trailerImage: UIImageView!

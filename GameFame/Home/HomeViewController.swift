@@ -16,7 +16,7 @@ protocol LoadingProtocolOutPut {
     func changeShimmer(isLoad: Bool)
 }
 
-class HomeViewController: UIViewController, UIScrollViewDelegate {
+final class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     
     @IBOutlet weak var newsCollection: UICollectionView!
@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var slug = String()
     private var bag = DisposeBag()
     private var effect: UIVisualEffect?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
@@ -107,7 +108,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     private func registerCells(){
         TopRated.register(UINib(nibName: "TopRatedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TopRatedCollectionViewCell")
         metaCritic.register(UINib(nibName: "MetaCriticCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MetaCriticCollectionViewCell")
-      
         newsCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewsCollectionViewCell")
     }
    

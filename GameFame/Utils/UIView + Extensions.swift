@@ -6,28 +6,32 @@
 //
 
 import UIKit
-
+import SkeletonView
 
 @IBDesignable
 
-
-class CardView : UIView,CardViewProtocol {
-    
+final class CardView : UIView {
+   
         var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
-        lazy var skeletonBool = false
-        @IBInspectable var cornerRadius: CGFloat = 0 {
-            didSet {
-                layer.cornerRadius = cornerRadius
-                layer.masksToBounds = cornerRadius > 0
-                self.isSkeletonable = skeletonBool
-                self.showAnimatedGradientSkeleton()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                    self.hideSkeleton()
-                })
+        var viewmodel = SearchViewModel()
+        
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        viewmodel.isLoadedDelegate = self
+        
+    }
+
+    @IBInspectable
+        var cornerRadius: CGFloat {
+            get {
+                return layer.cornerRadius
                
+            }
+            set {
+                layer.cornerRadius = newValue
+                
             }
         }
         
@@ -43,7 +47,7 @@ class CardView : UIView,CardViewProtocol {
                 setGradient()
             }
         }
-       
+    
         func setGradient() {
             
             let gradientLocations = [0.0,1.0]
@@ -61,9 +65,20 @@ class CardView : UIView,CardViewProtocol {
         }
 }
 
-
-
-protocol CardViewProtocol {
-    var skeletonBool : Bool {get}
+extension CardView: ShimmerProtocol {
+    
+    func changeShimmer(isLoaded: Bool) {
+        if isLoaded == true {
+            print("suan var")
+            self.hideSkeleton()
+        } else {
+            print("suan yokum")
+            self.isSkeletonable = true
+            self.showGradientSkeleton()
+        }
+       
+    }
+    
     
 }
+
