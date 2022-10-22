@@ -6,27 +6,60 @@
 //
 
 import RealmSwift
-
+import Foundation
 
 class DataBaseManager: IDataBaseManager {
     
     lazy var realm = try! Realm()
-    
-    func saveGame(game:SavedGames) {
+   /*
+    func createGame(game:SavedGames) {
         
         do {
-          
-            try realm.write({
-                realm.add(game)
-            })
             
+          
+           try realm.safeWrite {
+         self.realm.add(game)
+          
+            }
+ 
         }catch {
             print(error.localizedDescription)
         }
         
     }
+*/
+    func createOrDeleteGame(newGame:SavedGames) {
+        
+        var savedGames = realm.objects(SavedGames.self)
+        
+        let filtered = savedGames.filter("name == %@", newGame.name)
+        
+        if filtered.count > 0 {
+            do {
+                try realm.write({
+                    realm.delete(filtered)
+                    
+                })
+            } catch {
+                print("error deleting")
+            }
+         
+            
+        } else {
+            do {
+                try realm.write({
+                    realm.add(newGame)
+                })
+            } catch {
+                
+                print("error adding")
+            }
+            
+        }
+        
     
-    func deleteGame(newGame:SavedGames, oldGame: SavedGames ) {
+    }
+    func updateDeleteGame(newGame:SavedGames, oldGame: SavedGames ) {
         
         do {
             
@@ -35,6 +68,7 @@ class DataBaseManager: IDataBaseManager {
                     realm.delete(newGame)
                     realm.delete(oldGame)
                 }
+                
             })
         }catch {
             
@@ -43,10 +77,20 @@ class DataBaseManager: IDataBaseManager {
         
     }
     
-    func fetchAll() -> [SavedGames] {
+    func readGame() -> [SavedGames] {
         
         return Array(realm.objects(SavedGames.self))
         
     }
 
+}
+
+extension Realm {
+    public func safeWrite(_ block: (() throws -> Void)) throws {
+        if isInWriteTransaction {
+            try block()
+        } else {
+            try write(block)
+        }
+    }
 }
