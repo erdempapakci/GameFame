@@ -14,6 +14,10 @@ final class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var RatingView: CardView!
     @IBOutlet weak var favView: UIView!
+   
+    private var saveModel = SavedViewModel()
+    var imageUrl = String()
+    var name = String()
     
     private let likeButton : LikeButton = {
             let button = LikeButton()
@@ -25,10 +29,17 @@ final class SearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setViewConstraints()
+        
     }
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        likeButton.isContains(with: name)
+        likeButton.getImage()
+    }
     @objc func handleLikeButton() {
         likeButton.flipLikeState()
+        saveModel.saveGameToRealm(slug: name, imageUrl: imageUrl)
+        
    
     }
     private  func setViewConstraints() {
