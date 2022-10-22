@@ -26,24 +26,55 @@ class SavedViewController: UIViewController, UIScrollViewDelegate {
        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+      
+        self.viewModel.fetchData()
+    
+    }
     
     private func bindSavedCollectionCell() {
-        
-        self.viewModel.fetchData()
-        print("2::\(viewModel.fetchData())")
+    
         detailCollection.rx.setDelegate(self).disposed(by: bag)
-        viewModel.savedGameBehavior.bind(to: detailCollection.rx.items(cellIdentifier: "", cellType: SavedCollectionViewCell.self)) {
+        
+        viewModel.savedGameBehavior.bind(to: detailCollection.rx.items(cellIdentifier: "SavedCollectionViewCell", cellType: SavedCollectionViewCell.self)) {
             section, item, cell in
-            cell.savedGameName.text = "item.name"
-            
+            cell.savedGameName.text = item.name
+            cell.savedGameImage.sd_setImage(with: URL(string: item.image))
         }.disposed(by: bag)
   
+        detailCollection.rx.modelSelected(SavedGames.self)
+            .subscribe{ game in
+                
+                let main = UIStoryboard(name: "Main", bundle: nil)
+                let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                detailVC.slug = game.name
+                self.show(detailVC, sender: self)
+                
+            }.disposed(by: bag)
+        /*
+        detailCollection.rx.modelSelected(SavedGames.self)
+            .subscribe { game in
+                
+                let main = UIStoryboard(name: "Main", bundle: nil)
+                let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                print(game.slug)
+                
+                detailVC.slug = game.slug
+                self.show(detailVC, sender: self)
+                
+            }.disposed(by: bag)
+         **/
+        
     }
    
     private func registerCell() {
         
         detailCollection.register(UINib(nibName: "SavedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SavedCollectionViewCell")
     }
+    
+    
 
 }
 

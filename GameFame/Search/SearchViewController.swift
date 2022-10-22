@@ -47,14 +47,11 @@ import SkeletonView
                 
             }
             
-                
                 cell.scoreLabel.text = String(item.metacritic ?? 0)
                 cell.gameImage.sd_setImage(with: URL(string: item.background_image))
                 cell.gameName.text = item.name
-            
-                
-              
-            
+                cell.imageUrl = item.background_image
+                cell.name = item.slug
         }.disposed(by: self.bag)
         
     }

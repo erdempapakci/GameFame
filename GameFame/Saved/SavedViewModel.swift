@@ -11,24 +11,29 @@ import RxCocoa
 import RealmSwift
 
 final class SavedViewModel : ISavedViewModel {
+ 
+    var dataManager : IDataBaseManager = DataBaseManager()
+ 
     
-   lazy var dataManager : IDataBaseManager = DataBaseManager()
-    var savedGameBehavior = PublishSubject<[SavedGames]>()
-
+    var savedGameBehavior = BehaviorSubject(value: [SavedGames]())
     private var bag = DisposeBag()
 
     func saveGameToRealm(slug: String, imageUrl:String) {
-                              
-         dataManager.saveGame(game: SavedGames(name: slug, image: imageUrl))
+         
+        dataManager.createOrDeleteGame(newGame: SavedGames(name: slug, image: imageUrl))
   
     }
    
     func fetchData() {
         
-        let array = dataManager.fetchAll()
-
-        self.savedGameBehavior.onNext(array)
-        
+        let array = dataManager.readGame()
+        print(array)
+        savedGameBehavior.bind { saved in
+            saved.onNext(array)
+                
+        }
+    
     }
+  
 
 }
