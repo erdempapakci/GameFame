@@ -8,15 +8,19 @@
 import Foundation
 import Alamofire
 
-
 final class NetworkService: NetworkServiceProtocol {
 
+    var delegate:ConnectionProtocol?
+    
+    static let sharedInstance = NetworkService()
+    
     func fetchGames(url:String, completion: @escaping([Game]) -> Void) {
         
         AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
             
             guard let data = response.value else {return}
             completion(data.results)
+            NetworkService.sharedInstance.delegate?.didGetData()
         }
     }
     
@@ -26,6 +30,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data)
+            NetworkService.sharedInstance.delegate?.didGetData()
         }
     }
     
@@ -35,6 +40,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
+            NetworkService.sharedInstance.delegate?.didGetData()
             
         }
     }
@@ -45,6 +51,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
+            NetworkService.sharedInstance.delegate?.didGetData()
         }
     }
     
@@ -54,6 +61,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
+            NetworkService.sharedInstance.delegate?.didGetData()
             
         }
     }
@@ -71,10 +79,10 @@ final class NetworkService: NetworkServiceProtocol {
         AF.request(request).responseDecodable(of:[GameNews].self) { response in
             guard let data = response.value else {return}
             completion(data)
+            NetworkService.sharedInstance.delegate?.didGetData()
         }
     }
-    
-    
+   
     func fetchGameWithSearch(with query: String, completion: @escaping([Game]) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
@@ -83,8 +91,12 @@ final class NetworkService: NetworkServiceProtocol {
         AF.request(url).responseDecodable(of:GamesResponse.self) { response in
             guard let data = response.value else {return}
             completion(data.results)
+            NetworkService.sharedInstance.delegate?.didGetData()
         }
     }
  
 }
 
+protocol ConnectionProtocol {
+    func didGetData()
+}

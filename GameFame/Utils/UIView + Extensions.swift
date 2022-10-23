@@ -11,16 +11,29 @@ import SkeletonView
 @IBDesignable
 
 final class CardView : UIView {
-   
+    
+    let connectionManager:NetworkService = NetworkService.sharedInstance
+    
         var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
-        var viewmodel = SearchViewModel()
+        let group = DispatchGroup()
         
+       
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        viewmodel.isLoadedDelegate = self
-        
+        group.enter()
+        DispatchQueue.main.async {
+            self.isSkeletonable = true
+            self.showAnimatedGradientSkeleton()
+            self.group.leave()
+            }
+        group.notify(queue: .main) {
+            self.connectionManager.delegate = self
+            self.connectionManager.delegate?.didGetData()
+            self.hideSkeleton()
+            }
+    
     }
 
     @IBInspectable
@@ -65,20 +78,12 @@ final class CardView : UIView {
         }
 }
 
-extension CardView: ShimmerProtocol {
-    
-    func changeShimmer(isLoaded: Bool) {
-        if isLoaded == true {
-            print("suan var")
-            self.hideSkeleton()
-        } else {
-            print("suan yokum")
-            self.isSkeletonable = true
-            self.showGradientSkeleton()
-        }
-       
+
+
+extension CardView: ConnectionProtocol {
+    func didGetData() {
+        
     }
     
     
 }
-

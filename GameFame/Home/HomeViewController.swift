@@ -12,13 +12,8 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 
-protocol LoadingProtocolOutPut {
-    func changeShimmer(isLoad: Bool)
-}
-
 final class HomeViewController: UIViewController, UIScrollViewDelegate {
 
-    
     @IBOutlet weak var newsCollection: UICollectionView!
     @IBOutlet weak var metaCritic: UICollectionView!
     @IBOutlet weak var TopRated: UICollectionView!
@@ -27,17 +22,39 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     var slug = String()
     private var bag = DisposeBag()
-    private var effect: UIVisualEffect?
+    
+    private var  IsHidden = false
+    
+    let blurEffectView : UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return blurEffectView
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         registerCells()
         bindingPopular()
         bindingMetaCritic()
         bindingNews()
-    
+        
+      
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationIdentifier"), object: nil)
+    }
+  
 
+    @objc func methodOfReceivedNotification(notification: NSNotification) {
+        self.IsHidden = true
+        showBlur(IsHidden: IsHidden)
+    }
+    
     private func bindingPopular() {
     
         self.viewModel.fetchPopularGames()
@@ -73,10 +90,18 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
             .subscribe { game in
                 let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                 
+                
                 detailVC.slug = game.slug
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }.disposed(by: bag)
     
+    }
+    private func showBlur(IsHidden:Bool) {
+      
+        self.blurEffectView.frame = self.view.bounds
+        self.view.addSubview(self.blurEffectView)
+        self.blurEffectView.isHidden = IsHidden
+        
     }
     
     private func bindingNews() {
@@ -94,14 +119,16 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
                 let sheetNewsVC =
                 storyboard.instantiateViewController(withIdentifier: "SheetViewController") as! SheetViewController
                 self.present(sheetNewsVC, animated: true)
-                news.map { element in
+               _ = news.map { element in
                     sheetNewsVC.titleLbl.text = element.title
                     sheetNewsVC.descriptionLbl.text = element.welcomeDescription
                     sheetNewsVC.newsImage.sd_setImage(with: URL(string: element.image))
                     sheetNewsVC.newsUrl = element.link
                 }
-               
+                self.showBlur(IsHidden: false)
+                
             }.disposed(by: bag)
+       
         
     }
    
@@ -125,10 +152,4 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
 
 }
 
-extension HomeViewController: LoadingProtocolOutPut {
-    func changeShimmer(isLoad: Bool) {
-        
-    }
-    
-    
-}
+

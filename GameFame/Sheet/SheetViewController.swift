@@ -20,21 +20,27 @@ class SheetViewController: UIViewController, UISheetPresentationControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
+        setPresentationView()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setPresentationView()
+       
     }
+
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+
+        NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
+    }
+    
     private func setPresentationView() {
         
         sheetPresentationController.delegate = self
-        sheetPresentationController.selectedDetentIdentifier = .medium
+       
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [
             .medium()
         ]
+        sheetPresentationController.selectedDetentIdentifier = .medium
         let interaction = UIContextMenuInteraction(delegate: self)
         newsImage.addInteraction(interaction)
         newsImage.isUserInteractionEnabled = true

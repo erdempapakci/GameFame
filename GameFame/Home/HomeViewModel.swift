@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 import RxSwift
 import RxCocoa
 
@@ -22,13 +21,16 @@ final class HomeViewModel: HomeViewModelProtocol {
     lazy var network: NetworkServiceProtocol = NetworkService()
     
     func fetchPopularGames() {
+        
         changeShimmer()
         network.fetchGames(url: APIConstants.POPULAR_URL) { [weak self] response in
             self?.changeShimmer()
+            
             self?.popularsBehavior.onNext(response)
             
         }
     }
+    
     func fetchMetacriticGames() {
         changeShimmer()
         network.fetchGames(url: APIConstants.METACRITIC_URL) { [weak self] response in
@@ -48,25 +50,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     func changeShimmer() {
         
