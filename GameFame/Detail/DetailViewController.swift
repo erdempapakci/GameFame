@@ -10,9 +10,7 @@ import SDWebImage
 import RxSwift
 import AVFoundation
 import AVKit
-
-
-
+import RealmSwift
 
 final class DetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -30,82 +28,97 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var descriptionView: CardView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
-  
-  
-   
+    
+    @IBOutlet weak var trailerButton: UIButton!
+    lazy var realm = try! Realm()
     private var bag = DisposeBag()
-    
     private var viewModel = DetailViewModel()
+    private var saveModel = SavedViewModel()
     
+    var imageUrl = String()
     var slug = String()
     var url = String()
-    var trailer = [GameTrailer]()
     
-    
-  
+    private var trailerString = String()
     
     private let likeButton : LikeButton = {
-            let button = LikeButton()
+        let button = LikeButton()
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
-            return button
-        }()
+        return button
+    }()
     
     @objc func handleLikeButton() {
-        likeButton.flipLikeState()
         
+        likeButton.flipLikeState()
+        saveModel.saveGameToRealm(slug: slug, imageUrl: imageUrl)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
+        trailerButton.isHidden = true
         registerCells()
-        bindingUI()
-        bindingGenresCollectionView()
-        bindingImageCollectionView()
-        setViewConstraints()
+     
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         
+        likeButton.isContains(with: slug)
+        likeButton.getImage()
         pageControl.currentPage = 0
         pageControl.numberOfPages = 6
     }
-  
-  private  func setViewConstraints() {
-            
-            view.addSubview(likeButton)
-            likeButton.translatesAutoresizingMaskIntoConstraints = false
-            likeButton.contentMode = .scaleAspectFill
-            likeButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
-            likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+    
+    
+    
+    @IBAction func mp4Clicked(_ sender: Any) {
         
+        guard let url = URL(string: trailerString) else {return}
+        let player = AVPlayer(url: url)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) {
+            playerViewController.player!.play()
+            player.volume = 0.5
         }
-      
-
+    }
+    private  func setViewConstraints() {
+        
+        view.addSubview(likeButton)
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.contentMode = .scaleAspectFill
+        likeButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
+        likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+        
+    }
+    
+    
     @IBAction func backButtonClicked(_ sender: Any) {
-
+        
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-  
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
-  
- 
- 
+    
+    
+    
     @IBAction func openURLClicked(_ sender: Any) {
         getPlatformURL()
         let urlString = url
-   
+        
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url, completionHandler: nil)
         }
     }
     private func registerCells(){
         imageCollectionView.register(UINib(nibName: "ScreenShotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ScreenShotCollectionViewCell")
-       
-       genresCollectionView.register(UINib(nibName: "GenresCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GenresCollectionViewCell")
         
+        genresCollectionView.register(UINib(nibName: "GenresCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GenresCollectionViewCell")
+        bindingUI()
+        bindingGenresCollectionView()
+        bindingImageCollectionView()
+        setViewConstraints()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -115,13 +128,13 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
             self.pageControl.currentPage = visibleIndexPath.row
         }
     }
-  
+    
 }
 // DATA BINDING WITH RX
 extension DetailViewController {
     
     private func bindingGenresCollectionView() {
-      
+        
         
         viewModel.fetchDetails(slug: slug)
         genresCollectionView.rx.setDelegate(self).disposed(by: bag)
@@ -131,51 +144,61 @@ extension DetailViewController {
             
             cell.genreLabel.text = item.name
             
-           
+            
             
         }.disposed(by: bag)
-     }
+    }
     
     private func bindingImageCollectionView() {
-         
-        viewModel.fetchGameScreenShots(slug: slug)
-         imageCollectionView.rx.setDelegate(self).disposed(by: bag)
-        viewModel.screenShotBehavior.bind(to: imageCollectionView.rx.items(cellIdentifier: "ScreenShotCollectionViewCell",cellType: ScreenShotCollectionViewCell.self)) {
-             section,item,cell in
-             
-             cell.SSImage.sd_setImage(with: URL(string: item.image))
-             
-         }.disposed(by: bag)
-      
-     }
-     
-    private func bindingUI() {
         
-         
-        viewModel.fetchDetails(slug: slug)
-         viewModel.detailBehavior.bind { gamedetail in
-             self.gameName.text = gamedetail.name
-             self.websiteLbl.text = gamedetail.website
-             self.developerName.text = gamedetail.developers.first?.name
-             self.descriptionLbl.text = gamedetail.description_raw
-             self.releaseDate.text = gamedetail.released
-             self.publisherLbl.text = gamedetail.publishers.first?.name
-             self.ratingLbl.text =  String(gamedetail.rating ?? 0)
-             
+        viewModel.fetchGameScreenShots(slug: slug)
+        imageCollectionView.rx.setDelegate(self).disposed(by: bag)
+        viewModel.screenShotBehavior.bind(to: imageCollectionView.rx.items(cellIdentifier: "ScreenShotCollectionViewCell",cellType: ScreenShotCollectionViewCell.self)) {
+            section,item,cell in
             
-             self.mainImage.sd_setImage(with: URL(string: gamedetail.background_image!))
-         }.disposed(by: bag)
-     
-     }
+            cell.SSImage.sd_setImage(with: URL(string: item.image))
+            
+        }.disposed(by: bag)
+        
+        
+    }
+    
+    private func bindingUI() {
+        viewModel.fetchGameTrailers(slug: slug)
+        viewModel.trailerBehavior.bind { trailer in
+            self.trailerString = trailer.max
+            if self.trailerString != "" {
+                self.trailerButton.isHidden = false
+            }
+            
+        }.disposed(by: bag)
+        
+        
+        viewModel.fetchDetails(slug: slug)
+        viewModel.detailBehavior.bind { gamedetail in
+            
+            self.gameName.text = gamedetail.name
+            self.websiteLbl.text = gamedetail.website
+            self.developerName.text = gamedetail.developers.first?.name
+            self.descriptionLbl.text = gamedetail.description_raw
+            self.releaseDate.text = gamedetail.released
+            self.publisherLbl.text = gamedetail.publishers.first?.name
+            self.ratingLbl.text =  String(gamedetail.rating ?? 0)
+            self.imageUrl = gamedetail.background_image ?? ""
+            
+            self.mainImage.sd_setImage(with: URL(string: gamedetail.background_image!))
+        }.disposed(by: bag)
+        
+    }
     
     private func getPlatformURL() {
-       
+        
         viewModel.fetchGameStores(slug: slug)
         viewModel.platformsBehavior.bind { platform in
             self.url = platform.first!.url
             
         }.disposed(by: bag)
     }
- 
+    
 }
 
