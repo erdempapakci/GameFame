@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import SkeletonView
+
+protocol SearchTableViewCellDelegate: AnyObject {
+    func didTapButton(title:String, image: UIImage)
+}
 
 final class SearchTableViewCell: UITableViewCell {
 
@@ -15,9 +20,12 @@ final class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var RatingView: CardView!
     @IBOutlet weak var favView: UIView!
    
+    weak var delegate: SearchTableViewCellDelegate?
+    
     private var saveModel = SavedViewModel()
     var imageUrl = String()
     var name = String()
+    
     
     private let likeButton : LikeButton = {
             let button = LikeButton()
@@ -35,6 +43,14 @@ final class SearchTableViewCell: UITableViewCell {
         super.layoutSubviews()
         likeButton.isContains(with: name)
         likeButton.getImage()
+        
+    }
+  
+    
+    @IBAction func shareButtonClicked(_ sender: Any) {
+        delegate?.didTapButton(title: gameName.text!, image: gameImage.image!)
+        
+    
     }
     @objc func handleLikeButton() {
         likeButton.flipLikeState()
@@ -43,8 +59,7 @@ final class SearchTableViewCell: UITableViewCell {
    
     }
     private  func setViewConstraints() {
-              
-              
+             
             favView.addSubview(likeButton)
               likeButton.translatesAutoresizingMaskIntoConstraints = false
               likeButton.contentMode = .scaleAspectFill

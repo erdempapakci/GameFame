@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -111,12 +112,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-e9-JW8">
+                        <rect key="frame" x="262" y="15" width="49" height="35"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                        <connections>
+                            <action selector="shareButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgI-5y-0Nf"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="JrJ-QN-uKC" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="8" id="8W0-Ij-adx"/>
                     <constraint firstAttribute="bottom" secondItem="qmN-mO-XlX" secondAttribute="bottom" constant="14" id="AiB-xs-L6s"/>
+                    <constraint firstItem="Ldp-e9-JW8" firstAttribute="leading" secondItem="rFc-7O-47H" secondAttribute="trailing" constant="48" id="GPS-6X-LZp"/>
                     <constraint firstAttribute="bottom" secondItem="rFc-7O-47H" secondAttribute="bottom" id="K9C-h5-R43"/>
+                    <constraint firstItem="Ldp-e9-JW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Pmu-vk-DGf"/>
                     <constraint firstAttribute="trailing" secondItem="JrJ-QN-uKC" secondAttribute="trailing" constant="14" id="R4b-HQ-bQF"/>
                     <constraint firstAttribute="trailing" secondItem="qmN-mO-XlX" secondAttribute="trailing" constant="14" id="ms2-fK-mDF"/>
                     <constraint firstItem="rFc-7O-47H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qiG-6x-pP4"/>
@@ -143,4 +156,10 @@
             <point key="canvasLocation" x="130.76923076923077" y="-11.374407582938389"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
