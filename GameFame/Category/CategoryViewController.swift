@@ -35,7 +35,7 @@ extension CategoryViewController {
     
     private func bindingCategory() {
          if title == "POPULAR GAMES" {
-      //       self.network.fetchPopularGames(url: APIConstants.POPULAR_URL)
+      
              viewModel.fetchPopularGames()
              categoryCollectio.rx.setDelegate(self).disposed(by: bag)
              viewModel.popularsBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
@@ -43,7 +43,7 @@ extension CategoryViewController {
                  cell.gameName.text = item.name
                  
                  cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                 
+                 cell.stopLoading()
              }.disposed(by: bag)
          } else {
              self.viewModel.fetchMetacriticGames()
@@ -52,7 +52,7 @@ extension CategoryViewController {
                  section,item,cell in
                  cell.gameName.text = item.name
                  cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                 
+                 cell.stopLoading()
              }.disposed(by: bag)
          }
          

@@ -10,17 +10,15 @@ import Alamofire
 
 final class NetworkService: NetworkServiceProtocol {
 
-    var delegate:ConnectionProtocol?
-    
     static let sharedInstance = NetworkService()
-    
+  
     func fetchGames(url:String, completion: @escaping([Game]) -> Void) {
         
         AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
             
             guard let data = response.value else {return}
             completion(data.results)
-            NetworkService.sharedInstance.delegate?.didGetData()
+            
         }
     }
     
@@ -30,7 +28,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data)
-            NetworkService.sharedInstance.delegate?.didGetData()
+           
         }
     }
     
@@ -40,18 +38,24 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
-            NetworkService.sharedInstance.delegate?.didGetData()
+           
             
         }
     }
     
-    func fetchGameTrailers(gameID: String, url: String, completion: @escaping([GameTrailer]) -> Void) {
+    func fetchGameTrailers(gameID: String, url: String, completion: @escaping(GameTrailer) -> Void) {
         
         AF.request(url, method: .get).responseDecodable(of:GameTrailerResponse.self) { response in
             
             guard let data = response.value else {return}
-            completion(data.results)
-            NetworkService.sharedInstance.delegate?.didGetData()
+            
+          
+            if data.results.count > 0 {
+                completion(data.results.first!)
+               
+            }
+           
+            
         }
     }
     
@@ -61,7 +65,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
-            NetworkService.sharedInstance.delegate?.didGetData()
+          
             
         }
     }
@@ -69,7 +73,7 @@ final class NetworkService: NetworkServiceProtocol {
     func fetchGameNews(completion: @escaping([GameNews]) -> Void) {
         
         let headers = [
-            "X-RapidAPI-Key": "75f022546bmsh2ab473fa3a242e1p132949jsn7bc42c64069c",
+            "X-RapidAPI-Key": "589b522522msh728a92ad97d7a3bp19dfbbjsn77ddf633e1f3",
             "X-RapidAPI-Host": "videogames-news2.p.rapidapi.com"
         ]
         var request = URLRequest(url: URL(string: "https://videogames-news2.p.rapidapi.com/videogames_news/recent")!)
@@ -79,24 +83,36 @@ final class NetworkService: NetworkServiceProtocol {
         AF.request(request).responseDecodable(of:[GameNews].self) { response in
             guard let data = response.value else {return}
             completion(data)
-            NetworkService.sharedInstance.delegate?.didGetData()
+            
         }
     }
    
     func fetchGameWithSearch(with query: String, completion: @escaping([Game]) -> Void) {
         
-        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&page_size=20&search=\(query)") else { return }
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&page_size=20&search=\(query)") else {return}
         
         AF.request(url).responseDecodable(of:GamesResponse.self) { response in
             guard let data = response.value else {return}
             completion(data.results)
-            NetworkService.sharedInstance.delegate?.didGetData()
+            
+           
         }
     }
+    
+    func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void) {
+      
+        guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&ordering=-added&page_size=20&page=\(page)") else { return }
+       
+        
+        AF.request(url).responseDecodable(of:GamesResponse.self) { response in
+            guard let data = response.value else {return}
+            completion(data.results)
+            
+           
+        }
+    }
+    
  
 }
 
-protocol ConnectionProtocol {
-    func didGetData()
-}

@@ -15,18 +15,43 @@ import SkeletonView
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
-
+    
     private let bag = DisposeBag()
     private let viewModel = SearchViewModel()
     private var searchValue = BehaviorRelay<String>(value: "")
+     
+     
+      
     
+     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         bindSearchBar()
         registerCell()
         bindTableView()
         modelSelectedTableView()
+       
+    }
+
+    private func registerCell() {
+        searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
         
+    }
+  
+}
+
+// BINDING SEARCH
+
+extension SearchViewController {
+    
+    private func bindSearchBar()  {
+        searchBar.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .debug()
+            .bind(to: searchValue)
+            .disposed(by: bag)
     }
     
     private func bindTableView() {
@@ -47,11 +72,15 @@ import SkeletonView
                 
             }
             
-                cell.scoreLabel.text = String(item.metacritic ?? 0)
-                cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                cell.gameName.text = item.name
-                cell.imageUrl = item.background_image
-                cell.name = item.slug
+                    cell.scoreLabel.text = String(item.metacritic ?? 0)
+                    cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+                    cell.gameName.text = item.name
+                    cell.imageUrl = item.background_image
+                    cell.name = item.slug
+                    cell.delegate = self
+                    cell.stopLoading()
+            
+           
         }.disposed(by: self.bag)
         
     }
@@ -72,20 +101,17 @@ import SkeletonView
         
     }
     
-    private func registerCell() {
-        searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
-        
-    }
-    
-    private func bindSearchBar()  {
-        searchBar.rx.text
-            .orEmpty
-            .distinctUntilChanged()
-            .debug()
-            .bind(to: searchValue)
-            .disposed(by: bag)
-    }
 }
+extension SearchViewController: SearchTableViewCellDelegate {
+    func didTapButton(title: String, image: UIImage) {
+        let activityController = UIActivityViewController(activityItems: [title,
+                                                                         image],
+            applicationActivities: nil)
+            self.present(activityController, animated: true)
+    }
+ 
+}
+
 
 
 

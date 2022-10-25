@@ -13,7 +13,18 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var gameImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        executeLoading()
+    }
+    private func executeLoading() {
+        gameImage.startDSLoading()
+        gameName.startDSLoading()
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+            self.gameImage.stopDSLoading()
+            self.gameName.stopDSLoading()
+        })
         
     }
-
 }

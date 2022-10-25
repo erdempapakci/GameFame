@@ -17,8 +17,8 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var newsCollection: UICollectionView!
     @IBOutlet weak var metaCritic: UICollectionView!
     @IBOutlet weak var TopRated: UICollectionView!
-    
-   private var viewModel = HomeViewModel()
+    @IBOutlet weak var gamesWithPage: UICollectionView!
+    private var viewModel = HomeViewModel()
     
     var slug = String()
     private var bag = DisposeBag()
@@ -36,7 +36,6 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         registerCells()
         bindingPopular()
         bindingMetaCritic()
@@ -54,48 +53,7 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.IsHidden = true
         showBlur(IsHidden: IsHidden)
     }
-    
-    private func bindingPopular() {
-    
-        self.viewModel.fetchPopularGames()
-        TopRated.rx.setDelegate(self).disposed(by: bag)
-        viewModel.popularsBehavior.bind(to: TopRated.rx.items(cellIdentifier: "TopRatedCollectionViewCell",cellType: TopRatedCollectionViewCell.self)) {
-            section,item,cell in
-           
-            cell.gameName.text = item.name
-            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-        }.disposed(by: bag)
-     
-        TopRated.rx.modelSelected(Game.self)
-            .subscribe { game in
-                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                detailVC.slug = game.slug
-                self.navigationController?.pushViewController(detailVC, animated: true)
-            }.disposed(by: bag)
-        
-    }
-    private func bindingMetaCritic() {
-        
-        self.viewModel.fetchMetacriticGames()
-        metaCritic.rx.setDelegate(self).disposed(by: bag)
-        viewModel.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
-            section,item,cell in
-            
-            cell.gameName.text = item.name
-            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-        }.disposed(by: bag)
-        
-        metaCritic.rx.modelSelected(Game.self)
-            .subscribe { game in
-                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                
-                detailVC.slug = game.slug
-                self.navigationController?.pushViewController(detailVC, animated: true)
-            }.disposed(by: bag)
-    
-    }
+
     private func showBlur(IsHidden:Bool) {
       
         self.blurEffectView.frame = self.view.bounds
@@ -103,14 +61,46 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.blurEffectView.isHidden = IsHidden
         
     }
-    
+  
+    private func registerCells(){
+        TopRated.register(UINib(nibName: "TopRatedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TopRatedCollectionViewCell")
+        metaCritic.register(UINib(nibName: "MetaCriticCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MetaCriticCollectionViewCell")
+        newsCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewsCollectionViewCell")
+    }
+   
+    @IBAction func categoryButtonClicked(_ sender: Any) {
+        let categoryVC = self.storyboard?.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        
+        categoryVC.title = "POPULAR GAMES"
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(categoryVC, animated: true)
+        }
+       
+ 
+    }
+    @IBAction func ratedButtonClicked(_ sender: Any) {
+        
+        let categoryVC = self.storyboard?.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(categoryVC, animated: true)
+        }
+        
+    }
+
+}
+
+// BINDING CELLS
+
+extension HomeViewController {
     private func bindingNews() {
         self.viewModel.fetchNews()
         newsCollection.rx.setDelegate(self).disposed(by: bag)
         viewModel.gameNewsBehavior.bind(to: newsCollection.rx.items(cellIdentifier: "NewsCollectionViewCell",cellType: NewsCollectionViewCell.self)) {
             section,item,cell in
             cell.newsImage.sd_setImage(with: URL(string: item.image))
-      
+            cell.stopLoading()
         }.disposed(by: bag)
         
         newsCollection.rx.modelSelected(GameNews.self)
@@ -131,25 +121,65 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
        
         
     }
-   
-    private func registerCells(){
-        TopRated.register(UINib(nibName: "TopRatedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TopRatedCollectionViewCell")
-        metaCritic.register(UINib(nibName: "MetaCriticCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MetaCriticCollectionViewCell")
-        newsCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewsCollectionViewCell")
-    }
-   
-    @IBAction func categoryButtonClicked(_ sender: Any) {
-        let categoryVC = self.storyboard?.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+    
+    private func bindingPopular() {
+    
+        self.viewModel.fetchPopularGames()
+        TopRated.rx.setDelegate(self).disposed(by: bag)
+        viewModel.popularsBehavior.bind(to: TopRated.rx.items(cellIdentifier: "TopRatedCollectionViewCell",cellType: TopRatedCollectionViewCell.self)) {
+            section,item,cell in
+           
+            cell.gameName.text = item.name
+            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+            cell.stopLoading()
+        }.disposed(by: bag)
+     
+        TopRated.rx.modelSelected(Game.self)
+            .subscribe { game in
+                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                detailVC.slug = game.slug
+                
+                self.navigationController?.pushViewController(detailVC, animated: false)
+            }.disposed(by: bag)
         
-        categoryVC.title = "POPULAR GAMES"
-        self.navigationController?.pushViewController(categoryVC, animated: true)
- 
     }
-    @IBAction func ratedButtonClicked(_ sender: Any) {
+    private func bindingMetaCritic() {
         
-        performSegue(withIdentifier: "fromHometoCategory", sender: nil)
+        self.viewModel.fetchMetacriticGames()
+        metaCritic.rx.setDelegate(self).disposed(by: bag)
+        viewModel.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
+            section,item,cell in
+            
+            cell.gameName.text = item.name
+            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+            cell.stopLoading()
+        }.disposed(by: bag)
+        
+        metaCritic.rx.modelSelected(Game.self)
+            .subscribe { game in
+                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                
+                detailVC.slug = game.slug
+                self.navigationController?.pushViewController(detailVC, animated: true)
+                
+            }.disposed(by: bag)
+    
     }
-
+    
+    private func bindingGamesWithPage(pageNumber:Int) {
+        self.viewModel.fetchGamesWithPage(with: ga, )
+        metaCritic.rx.setDelegate(self).disposed(by: bag)
+        viewModel.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
+            section,item,cell in
+            
+            cell.gameName.text = item.name
+            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+            cell.stopLoading()
+        }.disposed(by: bag)
+        
+    }
+    
+    
 }
-
-

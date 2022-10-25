@@ -59,8 +59,8 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         trailerButton.isHidden = true
         registerCells()
-     
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        executeLoading()
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +143,7 @@ extension DetailViewController {
             section, item, cell in
             
             cell.genreLabel.text = item.name
-            
+            cell.stopLoading()
             
             
         }.disposed(by: bag)
@@ -157,7 +157,7 @@ extension DetailViewController {
             section,item,cell in
             
             cell.SSImage.sd_setImage(with: URL(string: item.image))
-            
+            cell.stopLoading()
         }.disposed(by: bag)
         
         
@@ -185,8 +185,8 @@ extension DetailViewController {
             self.publisherLbl.text = gamedetail.publishers.first?.name
             self.ratingLbl.text =  String(gamedetail.rating ?? 0)
             self.imageUrl = gamedetail.background_image ?? ""
-            
             self.mainImage.sd_setImage(with: URL(string: gamedetail.background_image!))
+            self.stopLoading()
         }.disposed(by: bag)
         
     }
@@ -200,5 +200,39 @@ extension DetailViewController {
         }.disposed(by: bag)
     }
     
+}
+
+// SHIMMER LOADING
+
+extension DetailViewController {
+    
+    private func executeLoading() {
+       
+      
+        self.gameName.startDSLoading()
+        self.websiteLbl.startDSLoading()
+        self.developerName.startDSLoading()
+        self.descriptionLbl.startDSLoading()
+        self.releaseDate.startDSLoading()
+        self.publisherLbl.startDSLoading()
+        self.ratingLbl.startDSLoading()
+        self.mainImage.startDSLoading()
+        
+        
+    }
+    func stopLoading() {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+            
+            self.gameName.stopDSLoading()
+            self.websiteLbl.stopDSLoading()
+            self.developerName.stopDSLoading()
+            self.descriptionLbl.stopDSLoading()
+            self.releaseDate.stopDSLoading()
+            self.publisherLbl.stopDSLoading()
+            self.ratingLbl.stopDSLoading()
+            self.mainImage.stopDSLoading()
+        })
+        
+    }
 }
 

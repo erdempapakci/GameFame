@@ -20,8 +20,9 @@ class CustomTabBarController: UITabBarController {
             menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 50
             menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
             menuButton.frame = menuButtonFrame
+          
             menuButton.tintColor = .white
-            menuButton.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+            menuButton.backgroundColor = #colorLiteral(red: 0.05769797415, green: 0.1789989769, blue: 0.2456589341, alpha: 1)
             menuButton.layer.cornerRadius = menuButtonFrame.height/2
             view.addSubview(menuButton)
          

@@ -12,7 +12,7 @@ import RxCocoa
 import SDWebImage
 
 class SavedViewController: UIViewController, UIScrollViewDelegate {
-
+    
     @IBOutlet weak var detailCollection: UICollectionView!
     
     private var viewModel = SavedViewModel()
@@ -23,18 +23,28 @@ class SavedViewController: UIViewController, UIScrollViewDelegate {
         
         bindSavedCollectionCell()
         registerCell()
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
+        
         self.viewModel.fetchData()
-    
+        
     }
     
-    private func bindSavedCollectionCell() {
     
+    private func registerCell() {
+        
+        detailCollection.register(UINib(nibName: "SavedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SavedCollectionViewCell")
+    }
+    
+}
+
+extension SavedViewController {
+    
+    private func bindSavedCollectionCell() {
+        
         detailCollection.rx.setDelegate(self).disposed(by: bag)
         
         viewModel.savedGameBehavior.bind(to: detailCollection.rx.items(cellIdentifier: "SavedCollectionViewCell", cellType: SavedCollectionViewCell.self)) {
@@ -42,7 +52,7 @@ class SavedViewController: UIViewController, UIScrollViewDelegate {
             cell.savedGameName.text = item.name
             cell.savedGameImage.sd_setImage(with: URL(string: item.image))
         }.disposed(by: bag)
-  
+        
         detailCollection.rx.modelSelected(SavedGames.self)
             .subscribe{ game in
                 
@@ -52,29 +62,8 @@ class SavedViewController: UIViewController, UIScrollViewDelegate {
                 self.show(detailVC, sender: self)
                 
             }.disposed(by: bag)
-        /*
-        detailCollection.rx.modelSelected(SavedGames.self)
-            .subscribe { game in
-                
-                let main = UIStoryboard(name: "Main", bundle: nil)
-                let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                print(game.slug)
-                
-                detailVC.slug = game.slug
-                self.show(detailVC, sender: self)
-                
-            }.disposed(by: bag)
-         **/
-        
-    }
-   
-    private func registerCell() {
-        
-        detailCollection.register(UINib(nibName: "SavedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SavedCollectionViewCell")
+    
     }
     
-    
-
 }
 

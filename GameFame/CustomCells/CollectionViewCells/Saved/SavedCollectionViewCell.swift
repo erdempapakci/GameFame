@@ -17,5 +17,17 @@ class SavedCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
+    private func executeLoading() {
+        savedGameImage.startDSLoading()
+        savedGameName.startDSLoading()
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+            self.savedGameImage.stopDSLoading()
+            self.savedGameName.stopDSLoading()
+        })
+        
+    }
 
 }

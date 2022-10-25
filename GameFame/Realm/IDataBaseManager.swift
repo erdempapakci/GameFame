@@ -7,8 +7,7 @@
 import Foundation
 
 protocol IDataBaseManager {
-    
-   // func createGame(game:SavedGames)
+
     func readGame() -> [SavedGames]
     func createOrDeleteGame(newGame:SavedGames)
 }

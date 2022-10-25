@@ -12,7 +12,20 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        executeLoading()
+    }
+    private func executeLoading() {
+        newsImage.startDSLoading()
         
     }
+    
+     func stopLoading() {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+            self.newsImage.stopDSLoading()
+            
+        })
+        
+    }
+    
 
 }

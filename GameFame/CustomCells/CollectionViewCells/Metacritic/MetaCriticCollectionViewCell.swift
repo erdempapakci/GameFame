@@ -14,7 +14,19 @@ final class MetaCriticCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-     
+        executeLoading()
+    }
+    private func executeLoading() {
+        gameImage.startDSLoading()
+        gameName.startDSLoading()
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
+            self.gameImage.stopDSLoading()
+            self.gameName.stopDSLoading()
+        })
+        
     }
 
 }

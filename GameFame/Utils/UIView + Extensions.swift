@@ -10,7 +10,7 @@ import SkeletonView
 
 @IBDesignable
 
-final class CardView : UIView {
+ class CardView : UIView {
     
     let connectionManager:NetworkService = NetworkService.sharedInstance
     
@@ -22,17 +22,7 @@ final class CardView : UIView {
        
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        group.enter()
-        DispatchQueue.main.async {
-            self.isSkeletonable = true
-            self.showAnimatedGradientSkeleton()
-            self.group.leave()
-            }
-        group.notify(queue: .main) {
-            self.connectionManager.delegate = self
-            self.connectionManager.delegate?.didGetData()
-            self.hideSkeleton()
-            }
+     
     
     }
 
@@ -80,10 +70,4 @@ final class CardView : UIView {
 
 
 
-extension CardView: ConnectionProtocol {
-    func didGetData() {
-        
-    }
-    
-    
-}
+

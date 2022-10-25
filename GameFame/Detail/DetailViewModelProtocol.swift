@@ -8,10 +8,11 @@
 import Foundation
 
 protocol DetailViewModelProtocol {
+    
     var network: NetworkServiceProtocol {get set}
     func fetchDetails(slug: String)
     func fetchGameScreenShots(slug: String)
     func fetchGameTrailers(slug: String)
     func fetchGameStores(slug: String)
-    func changeShimmer()
+  
 }
