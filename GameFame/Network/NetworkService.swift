@@ -101,18 +101,17 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void) {
-      
+        
+        
         guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&ordering=-added&page_size=20&page=\(page)") else { return }
        
         
         AF.request(url).responseDecodable(of:GamesResponse.self) { response in
             guard let data = response.value else {return}
             completion(data.results)
-            
-           
+   
         }
     }
-    
- 
+
 }
 

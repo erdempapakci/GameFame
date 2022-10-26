@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" constant="44" id="88g-ll-AQI"/>
                                     <constraint firstAttribute="height" constant="15" id="Y8J-97-w28"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -52,7 +52,7 @@
             <connections>
                 <outlet property="genreLabel" destination="HKA-8H-UpE" id="QeE-Rg-z3F"/>
             </connections>
-            <point key="canvasLocation" x="131" y="-12"/>
+            <point key="canvasLocation" x="130.76923076923077" y="-12.440758293838861"/>
         </collectionViewCell>
     </objects>
 </document>

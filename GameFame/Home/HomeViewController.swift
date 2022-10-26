@@ -18,12 +18,14 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var metaCritic: UICollectionView!
     @IBOutlet weak var TopRated: UICollectionView!
     @IBOutlet weak var gamesWithPage: UICollectionView!
+    @IBOutlet weak var upComing: UICollectionView!
     private var viewModel = HomeViewModel()
     
     var slug = String()
     private var bag = DisposeBag()
     
     private var  IsHidden = false
+    private var pageNumber = 1
     
     let blurEffectView : UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
@@ -40,8 +42,12 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         bindingPopular()
         bindingMetaCritic()
         bindingNews()
+        bindingUpComing()
+        bindingGamesWithPage(pageNumber: 1)
         
-      
+        
+        
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,11 +67,14 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.blurEffectView.isHidden = IsHidden
         
     }
+    
   
     private func registerCells(){
         TopRated.register(UINib(nibName: "TopRatedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TopRatedCollectionViewCell")
         metaCritic.register(UINib(nibName: "MetaCriticCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MetaCriticCollectionViewCell")
         newsCollection.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewsCollectionViewCell")
+        upComing.register(UINib(nibName: "UpcomingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UpcomingCollectionViewCell")
+        gamesWithPage.register(UINib(nibName: "SearchByPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SearchByPageCollectionViewCell")
     }
    
     @IBAction func categoryButtonClicked(_ sender: Any) {
@@ -156,6 +165,8 @@ extension HomeViewController {
             cell.stopLoading()
         }.disposed(by: bag)
         
+        
+        
         metaCritic.rx.modelSelected(Game.self)
             .subscribe { game in
                 let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
@@ -168,18 +179,71 @@ extension HomeViewController {
     
     }
     
-    private func bindingGamesWithPage(pageNumber:Int) {
-        self.viewModel.fetchGamesWithPage(with: ga, )
-        metaCritic.rx.setDelegate(self).disposed(by: bag)
-        viewModel.metacriticBehavior.bind(to: metaCritic.rx.items(cellIdentifier: "MetaCriticCollectionViewCell",cellType: MetaCriticCollectionViewCell.self)) {
+    private func bindingUpComing() {
+        self.viewModel.fetchUpComingGames()
+        viewModel.upcomingBehavior.bind(to: upComing.rx.items(cellIdentifier: "UpcomingCollectionViewCell",cellType: UpcomingCollectionViewCell.self)) {
             section,item,cell in
             
-            cell.gameName.text = item.name
+            cell.upComingName.text = item.name
+            cell.upComingImage.sd_setImage(with: URL(string: item.background_image))
+        
+        }.disposed(by: bag)
+        
+        upComing.rx.modelSelected(Game.self)
+            .subscribe { game in
+                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                
+                detailVC.slug = game.slug
+                self.navigationController?.pushViewController(detailVC, animated: true)
+                
+            }.disposed(by: bag)
+    }
+  
+    private func bindingGamesWithPage(pageNumber:Int) {
+       
+        self.viewModel.fetchGamesWithPage(with: pageNumber)
+        viewModel.gamePagesBehavior.bind(to: gamesWithPage.rx.items(cellIdentifier: "SearchByPageCollectionViewCell",cellType: SearchByPageCollectionViewCell.self)) {
+            section,item,cell in
             cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+            cell.titleLabel.text = item.name
             cell.stopLoading()
         }.disposed(by: bag)
         
+       
+        
+        gamesWithPage.rx.willDisplayCell
+            .observe(on: MainScheduler.instance)
+                    .subscribe(onNext: { (cell, indexPath) in
+                        cell.alpha = 0
+                        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 180, 0)
+                        cell.layer.transform = rotationTransform
+                        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options:  .curveEaseIn, animations: {
+                            cell.alpha = 1
+                            cell.layer.transform = CATransform3DIdentity
+                        }, completion: nil)
+                     })
+                    .disposed(by: bag)
+        gamesWithPage.rx.modelSelected(Game.self)
+            .subscribe { game in
+                let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+              
+                detailVC.slug = game.slug
+                self.navigationController?.pushViewController(detailVC, animated: true)
+                
+            }.disposed(by: bag)
+            
+         gamesWithPage.rx.didScroll.subscribe { [weak self] _ in
+             guard let self = self else { return }
+             let offSetY = self.gamesWithPage.contentOffset.y
+             let contentHeight = self.gamesWithPage.contentSize.height
+
+             if offSetY > (contentHeight - self.gamesWithPage.frame.size.height) {
+                 self.pageNumber += 1
+                 self.viewModel.handlePageOfGames(givenPage: self.pageNumber)
+             }
+         }
+         .disposed(by: bag)
     }
-    
-    
+ 
 }
