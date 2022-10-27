@@ -11,6 +11,5 @@ protocol SearchViewModelProtocol {
     
     var network: NetworkServiceProtocol {get set}
     func searchGame(with slug: String)
-    func changeShimmer()
 
 }

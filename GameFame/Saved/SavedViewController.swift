@@ -32,8 +32,7 @@ class SavedViewController: UIViewController, UIScrollViewDelegate {
         self.viewModel.fetchData()
         
     }
-    
-    
+
     private func registerCell() {
         
         detailCollection.register(UINib(nibName: "SavedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SavedCollectionViewCell")
@@ -62,7 +61,7 @@ extension SavedViewController {
                 self.show(detailVC, sender: self)
                 
             }.disposed(by: bag)
-    
+        
     }
     
 }

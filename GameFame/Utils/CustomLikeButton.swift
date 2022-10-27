@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 final class LikeButton: UIButton {
-  
+    
     lazy var realm = try! Realm()
     lazy var isLiked = false
     
@@ -68,15 +68,13 @@ final class LikeButton: UIButton {
                 })
             })
         }
-    
+        
     }
- 
+    
     func isContains(with slugName: String) {
         
         let savedGames = realm.objects(SavedGames.self)
-        
         for saved in savedGames {
-            
             if saved.name == slugName {
                 self.isLiked = true
                 return

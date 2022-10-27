@@ -6,35 +6,23 @@
 //
 
 import UIKit
-import SkeletonView
+
 
 @IBDesignable
 
  class CardView : UIView {
     
-    let connectionManager:NetworkService = NetworkService.sharedInstance
-    
         var fromColor: UIColor?
         var toColor: UIColor?
         var gradientLayer: CAGradientLayer?
-        let group = DispatchGroup()
-        
-       
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-     
-    
-    }
 
     @IBInspectable
         var cornerRadius: CGFloat {
             get {
                 return layer.cornerRadius
-               
             }
             set {
                 layer.cornerRadius = newValue
-                
             }
         }
         
@@ -61,7 +49,6 @@ import SkeletonView
             }
             
             gradientLayer.locations = gradientLocations as [NSNumber]
-            
             gradientLayer.frame = self.bounds
             self.layer.insertSublayer(gradientLayer, at: 0)
 
@@ -96,7 +83,6 @@ import SkeletonView
              layer.shadowOffset = newValue
          }
      }
-     
 }
 
 

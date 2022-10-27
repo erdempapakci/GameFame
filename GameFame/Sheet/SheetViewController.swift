@@ -8,7 +8,7 @@
 import UIKit
 
 class SheetViewController: UIViewController, UISheetPresentationControllerDelegate{
-
+    
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var newsImage: UIImageView!
@@ -24,18 +24,18 @@ class SheetViewController: UIViewController, UISheetPresentationControllerDelega
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
+        
     }
-
+    
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-
+        
         NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
     }
     
     private func setPresentationView() {
         
         sheetPresentationController.delegate = self
-       
+        
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [
             .medium()
@@ -48,15 +48,15 @@ class SheetViewController: UIViewController, UISheetPresentationControllerDelega
     }
     
     private func createContextMenu() -> UIMenu {
-            let urlAction = UIAction(title: "Go to Adress", image: UIImage(systemName: "link")) { _ in
-                if let url = URL(string: self.newsUrl) {
-                    UIApplication.shared.open(url, completionHandler: nil)
-                }
+        let urlAction = UIAction(title: "Go to Adress", image: UIImage(systemName: "link")) { _ in
+            if let url = URL(string: self.newsUrl) {
+                UIApplication.shared.open(url, completionHandler: nil)
             }
-        
-            return UIMenu(title: "More", children: [urlAction])
         }
-  
+        
+        return UIMenu(title: "More", children: [urlAction])
+    }
+    
 }
 extension SheetViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {

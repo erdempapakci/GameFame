@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView {
+    
     func startDSLoading() {
         let gradient = CAGradientLayer()
         

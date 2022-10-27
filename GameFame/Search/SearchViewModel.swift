@@ -11,21 +11,17 @@ import RxSwift
 
 final class SearchViewModel: SearchViewModelProtocol {
  
-    private var isLoading = false
+   
     lazy var network: NetworkServiceProtocol = NetworkService()
     var gameSearchBehavior = PublishSubject<[Game]>()
     
     func searchGame(with slug: String) {
         
         network.fetchGameWithSearch(with: slug) {[weak self] response in
-            self?.changeShimmer()
+            
             self?.gameSearchBehavior.onNext(response)
             
         }
     }
-    func changeShimmer() {
-        
-    }
-    
 
 }

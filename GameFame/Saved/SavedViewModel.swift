@@ -12,10 +12,9 @@ import RealmSwift
 
 final class SavedViewModel : ISavedViewModel {
  
-    var dataManager : IDataBaseManager = DataBaseManager()
- 
-    
+     var dataManager : IDataBaseManager = DataBaseManager()
     var savedGameBehavior = BehaviorSubject(value: [SavedGames]())
+    
     private var bag = DisposeBag()
 
     func saveGameToRealm(slug: String, imageUrl:String) {
@@ -27,7 +26,7 @@ final class SavedViewModel : ISavedViewModel {
     func fetchData() {
         
         let array = dataManager.readGame()
-        print(array)
+       
         savedGameBehavior.bind { saved in
             saved.onNext(array)
                 

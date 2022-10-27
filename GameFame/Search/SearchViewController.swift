@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SDWebImage
-import SkeletonView
+
 
  final class SearchViewController: UIViewController, UIScrollViewDelegate {
     
@@ -19,11 +19,7 @@ import SkeletonView
     private let bag = DisposeBag()
     private let viewModel = SearchViewModel()
     private var searchValue = BehaviorRelay<String>(value: "")
-     
-     
-      
-    
-     
+
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -38,7 +34,6 @@ import SkeletonView
         searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
         
     }
-  
 }
 
 // BINDING SEARCH
@@ -71,7 +66,6 @@ extension SearchViewController {
                 cell.RatingView.isHidden = true
                 
             }
-            
                     cell.scoreLabel.text = String(item.metacritic ?? 0)
                     cell.gameImage.sd_setImage(with: URL(string: item.background_image))
                     cell.gameName.text = item.name
@@ -79,8 +73,7 @@ extension SearchViewController {
                     cell.name = item.slug
                     cell.delegate = self
                     cell.stopLoading()
-            
-           
+
         }.disposed(by: self.bag)
         
     }
@@ -91,9 +84,7 @@ extension SearchViewController {
                 
                 let main = UIStoryboard(name: "Main", bundle: nil)
                 let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                print(game.slug)
-                
+
                 detailVC.slug = game.slug
                 self.show(detailVC, sender: self)
                 
@@ -111,7 +102,3 @@ extension SearchViewController: SearchTableViewCellDelegate {
     }
  
 }
-
-
-
-
