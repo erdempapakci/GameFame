@@ -39,7 +39,6 @@ final class NetworkService: NetworkServiceProtocol {
             guard let data = response.value else {return}
             completion(data.results)
            
-            
         }
     }
     
@@ -49,13 +48,11 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             
-          
             if data.results.count > 0 {
                 completion(data.results.first!)
                
             }
-           
-            
+
         }
     }
     
@@ -65,8 +62,7 @@ final class NetworkService: NetworkServiceProtocol {
             
             guard let data = response.value else {return}
             completion(data.results)
-          
-            
+
         }
     }
     
@@ -95,17 +91,14 @@ final class NetworkService: NetworkServiceProtocol {
         AF.request(url).responseDecodable(of:GamesResponse.self) { response in
             guard let data = response.value else {return}
             completion(data.results)
-            
-           
+
         }
     }
     
     func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void) {
-        
-        
+   
         guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&ordering=-added&page_size=20&page=\(page)") else { return }
-       
-        
+
         AF.request(url).responseDecodable(of:GamesResponse.self) { response in
             guard let data = response.value else {return}
             completion(data.results)

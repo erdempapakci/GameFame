@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmN-mO-XlX" customClass="CardView" customModule="GameFame" customModuleProvider="target">
-                        <rect key="frame" x="214" y="152" width="162" height="34"/>
+                        <rect key="frame" x="214" y="152" width="150" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKA-fo-adn">
                                 <rect key="frame" x="98" y="8" width="38" height="18"/>
@@ -37,11 +37,11 @@
                         <color key="backgroundColor" red="0.057697974149999998" green="0.1789989769" blue="0.2456589341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cOb-4s-qiM" firstAttribute="leading" secondItem="qmN-mO-XlX" secondAttribute="leading" constant="8" id="8tz-su-3x0"/>
-                            <constraint firstAttribute="trailing" secondItem="EKA-fo-adn" secondAttribute="trailing" constant="26" id="JI1-y7-Q68"/>
+                            <constraint firstAttribute="trailing" secondItem="EKA-fo-adn" secondAttribute="trailing" constant="14" id="JI1-y7-Q68"/>
                             <constraint firstItem="cOb-4s-qiM" firstAttribute="centerY" secondItem="EKA-fo-adn" secondAttribute="centerY" id="Nc7-jt-cvY"/>
                             <constraint firstItem="EKA-fo-adn" firstAttribute="leading" secondItem="qmN-mO-XlX" secondAttribute="leading" constant="98" id="Vb0-Jb-p2d"/>
                             <constraint firstItem="cOb-4s-qiM" firstAttribute="top" secondItem="qmN-mO-XlX" secondAttribute="top" constant="7" id="anb-xN-QG5"/>
-                            <constraint firstAttribute="trailing" secondItem="cOb-4s-qiM" secondAttribute="trailing" constant="82" id="b3o-PR-0I8"/>
+                            <constraint firstAttribute="trailing" secondItem="cOb-4s-qiM" secondAttribute="trailing" constant="70" id="b3o-PR-0I8"/>
                             <constraint firstItem="EKA-fo-adn" firstAttribute="bottom" secondItem="qmN-mO-XlX" secondAttribute="bottomMargin" id="rAW-Gj-upg"/>
                             <constraint firstItem="EKA-fo-adn" firstAttribute="top" secondItem="qmN-mO-XlX" secondAttribute="topMargin" id="yNI-P6-zh3"/>
                         </constraints>
@@ -66,7 +66,7 @@
                             <action selector="shareButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgI-5y-0Nf"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy5-dS-yFl">
                         <rect key="frame" x="214" y="58" width="162" height="69"/>
                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,8 +101,9 @@
                     <constraint firstItem="toa-OZ-fE8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="SFO-8u-jdZ"/>
                     <constraint firstItem="lwf-lc-Agf" firstAttribute="top" secondItem="toa-OZ-fE8" secondAttribute="top" id="YxU-CS-1Y6"/>
                     <constraint firstItem="lwf-lc-Agf" firstAttribute="leading" secondItem="Ldp-e9-JW8" secondAttribute="trailing" constant="8" id="gam-ff-ncp"/>
+                    <constraint firstItem="qmN-mO-XlX" firstAttribute="top" secondItem="iy5-dS-yFl" secondAttribute="bottom" constant="25" id="jAP-l4-6Um"/>
                     <constraint firstItem="lwf-lc-Agf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="lD1-sz-lvm"/>
-                    <constraint firstAttribute="trailing" secondItem="qmN-mO-XlX" secondAttribute="trailing" constant="14" id="ms2-fK-mDF"/>
+                    <constraint firstAttribute="trailing" secondItem="qmN-mO-XlX" secondAttribute="trailing" constant="26" id="ms2-fK-mDF"/>
                     <constraint firstItem="iy5-dS-yFl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="58" id="o9B-Fb-zgp"/>
                     <constraint firstItem="iy5-dS-yFl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="214" id="oVV-ZE-mYt"/>
                     <constraint firstItem="toa-OZ-fE8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ol1-tH-jVp"/>

@@ -12,10 +12,6 @@ class UpcomingCollectionViewCell: UICollectionViewCell {
  
     @IBOutlet weak var upComingImage: UIImageView!
     @IBOutlet weak var upComingName: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       
-    }
+
 
 }

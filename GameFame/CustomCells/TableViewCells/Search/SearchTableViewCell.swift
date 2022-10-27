@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SkeletonView
+
 
 protocol SearchTableViewCellDelegate: AnyObject {
     func didTapButton(title:String, image: UIImage)

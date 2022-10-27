@@ -8,10 +8,12 @@
 import Foundation
 
 protocol HomeViewModelProtocol {
+    
     var network: NetworkServiceProtocol {get set}
     func fetchPopularGames()
     func fetchMetacriticGames()
     func fetchNews()
     func fetchGamesWithPage(with page: Int)
+    func handlePageOfGames(givenPage: Int)
     
 }

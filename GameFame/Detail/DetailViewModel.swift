@@ -12,7 +12,6 @@ import RealmSwift
 final class DetailViewModel: DetailViewModelProtocol {
 
     var network: NetworkServiceProtocol = NetworkService()
-    
     var detailBehavior = PublishSubject<GameDetail>()
     var screenShotBehavior = PublishSubject<[GameScreenshot]>()
     var trailerBehavior = PublishSubject<GameTrailerData>()
@@ -22,8 +21,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     func fetchDetails(slug: String) {
        
         network.fetchGameDetails(gameID: slug, url: "\(APIConstants.BASE_URL)/games/\(slug)?key=\(APIConstants.API_KEY)") { [weak self] response in
-            
-            
+
             self?.detailBehavior.onNext(response)
             self?.genresBehavior.onNext(response.genres)
             
@@ -33,8 +31,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     func fetchGameScreenShots(slug: String) {
         
         network.fetchGameScreenShots(gameID: slug, url: "\(APIConstants.BASE_URL)/games/\(slug)/screenshots?key=\(APIConstants.API_KEY)") { [weak self] response in
-            
-           
+  
             self?.screenShotBehavior.onNext(response)
         }
     }
@@ -42,23 +39,18 @@ final class DetailViewModel: DetailViewModelProtocol {
     func fetchGameTrailers(slug: String) {
         
         network.fetchGameTrailers(gameID: slug, url: "\(APIConstants.BASE_URL)/games/\(slug)/movies?key=\(APIConstants.API_KEY)") { [weak self] response in
-            
-          
+    
             self?.trailerBehavior.onNext(response.data)
             
         }
     }
 
-    
     func fetchGameStores(slug: String) {
       
         network.fetchGameStores(gameID: slug, url: "\(APIConstants.BASE_URL)/games/\(slug)/stores?key=\(APIConstants.API_KEY)") { response in
-            
-          
+
             self.platformsBehavior.onNext(response)
         }
     }
- 
-   
 
 }

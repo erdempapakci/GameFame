@@ -57,12 +57,13 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         trailerButton.isHidden = true
         registerCells()
         executeLoading()
-        
-        
+  
     }
+  
     override func viewWillAppear(_ animated: Bool) {
         
         likeButton.isContains(with: slug)
@@ -70,9 +71,7 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = 0
         pageControl.numberOfPages = 6
     }
-    
-    
-    
+
     @IBAction func mp4Clicked(_ sender: Any) {
         
         guard let url = URL(string: trailerString) else {return}
@@ -93,16 +92,13 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
         
     }
-    
-    
+ 
     @IBAction func backButtonClicked(_ sender: Any) {
         
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
-    
-    
-    
+   
     @IBAction func openURLClicked(_ sender: Any) {
         getPlatformURL()
         let urlString = url
@@ -134,7 +130,6 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
 extension DetailViewController {
     
     private func bindingGenresCollectionView() {
-        
         
         viewModel.fetchDetails(slug: slug)
         genresCollectionView.rx.setDelegate(self).disposed(by: bag)
@@ -207,8 +202,7 @@ extension DetailViewController {
 extension DetailViewController {
     
     private func executeLoading() {
-       
-      
+   
         self.gameName.startDSLoading()
         self.websiteLbl.startDSLoading()
         self.developerName.startDSLoading()
@@ -216,9 +210,8 @@ extension DetailViewController {
         self.releaseDate.startDSLoading()
         self.publisherLbl.startDSLoading()
         self.ratingLbl.startDSLoading()
-        self.mainImage.startDSLoading()
-        
-        
+       
+    
     }
     func stopLoading() {
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
@@ -230,7 +223,7 @@ extension DetailViewController {
             self.releaseDate.stopDSLoading()
             self.publisherLbl.stopDSLoading()
             self.ratingLbl.stopDSLoading()
-            self.mainImage.stopDSLoading()
+           
         })
         
     }

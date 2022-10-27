@@ -17,4 +17,5 @@ protocol NetworkServiceProtocol{
     func fetchGameStores(gameID: String, url: String, completion: @escaping([GameStore]) -> Void)
     func fetchGameWithSearch(with query: String, completion: @escaping([Game]) -> Void)
     func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void)
+    
 }

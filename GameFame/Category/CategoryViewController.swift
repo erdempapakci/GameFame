@@ -24,46 +24,46 @@ class CategoryViewController: UIViewController, UIScrollViewDelegate {
         registerUI()
         bindingCategory()
     }
-   private func registerUI() {
+    private func registerUI() {
         categoryCollectio.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
     }
-
+    
 }
 // DATA BINDING W RX
 
 extension CategoryViewController {
     
     private func bindingCategory() {
-         if title == "POPULAR GAMES" {
-      
-             viewModel.fetchPopularGames()
-             categoryCollectio.rx.setDelegate(self).disposed(by: bag)
-             viewModel.popularsBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
-                 section,item,cell in
-                 cell.gameName.text = item.name
-                 
-                 cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                 cell.stopLoading()
-             }.disposed(by: bag)
-         } else {
-             self.viewModel.fetchMetacriticGames()
-             categoryCollectio.rx.setDelegate(self).disposed(by: bag)
-             viewModel.metacriticBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
-                 section,item,cell in
-                 cell.gameName.text = item.name
-                 cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                 cell.stopLoading()
-             }.disposed(by: bag)
-         }
-         
-         categoryCollectio.rx.modelSelected(Game.self)
-             .subscribe { game in
+        if title == "POPULAR GAMES" {
+            
+            viewModel.fetchPopularGames()
+            categoryCollectio.rx.setDelegate(self).disposed(by: bag)
+            viewModel.popularsBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
+                section,item,cell in
+                cell.gameName.text = item.name
+                
+                cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+                cell.stopLoading()
+            }.disposed(by: bag)
+        } else {
+            self.viewModel.fetchMetacriticGames()
+            categoryCollectio.rx.setDelegate(self).disposed(by: bag)
+            viewModel.metacriticBehavior.bind(to: categoryCollectio.rx.items(cellIdentifier: "CategoryCollectionViewCell",cellType: CategoryCollectionViewCell.self)) {
+                section,item,cell in
+                cell.gameName.text = item.name
+                cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+                cell.stopLoading()
+            }.disposed(by: bag)
+        }
+        
+        categoryCollectio.rx.modelSelected(Game.self)
+            .subscribe { game in
                 let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                 
-                 detailVC.slug = game.slug
-                 self.navigationController?.pushViewController(detailVC, animated: true)
-             }.disposed(by: bag)
-             
-     }
+                
+                detailVC.slug = game.slug
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }.disposed(by: bag)
+        
+    }
     
 }

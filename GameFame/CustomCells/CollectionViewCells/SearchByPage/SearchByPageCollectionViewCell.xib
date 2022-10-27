@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOy-z2-Iz9" customClass="CardView" customModule="GameFame" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="394" height="70"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-q4-lVc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-q4-lVc">
                                 <rect key="frame" x="0.0" y="0.0" width="394" height="70"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                             </imageView>

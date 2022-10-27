@@ -9,13 +9,13 @@ import UIKit
 
 @IBDesignable
 class AppTabBar: UITabBar {
-
+    
     private var shapeLayer: CALayer?
-
+    
     override func draw(_ rect: CGRect) {
         self.addShape()
     }
-
+    
     private func addShape() {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = createPath()
@@ -26,7 +26,7 @@ class AppTabBar: UITabBar {
         shapeLayer.shadowRadius = 10
         shapeLayer.shadowColor = UIColor.gray.cgColor
         shapeLayer.shadowOpacity = 0.3
-
+        
         if let oldShapeLayer = self.shapeLayer {
             self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
         } else {
@@ -34,8 +34,8 @@ class AppTabBar: UITabBar {
         }
         self.shapeLayer = shapeLayer
     }
-
-   private func createPath() -> CGPath {
+    
+    private func createPath() -> CGPath {
         let height: CGFloat = 86.0
         let path = UIBezierPath()
         let centerWidth = self.frame.width / 2
@@ -51,7 +51,7 @@ class AppTabBar: UITabBar {
         path.close()
         return path.cgPath
     }
-
+    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         guard !clipsToBounds && !isHidden && alpha > 0 else { return nil }
         for member in subviews.reversed() {
