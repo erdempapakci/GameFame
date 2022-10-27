@@ -17,8 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
      
         
-        if !UserDefaults.standard.bool(forKey: "didLoadedd") {
-            UserDefaults.standard.set(true, forKey: "didLoadedd")
+        if !UserDefaults.standard.bool(forKey: "didLoadedBefore") {
+            UserDefaults.standard.set(true, forKey: "didLoadedBefore")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")

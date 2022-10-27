@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIConstants {
-    static let API_KEY = "4ac4470739fb4a86ab7beb437311f517"
+    static let API_KEY = "API_KEY"
     static let BASE_URL = "https://api.rawg.io/api"
     
     static let METACRITIC_URL = "\(BASE_URL)/games?key=\(API_KEY)&dates=2000-01-01,2022-12-31&ordering=-metacritic&page_size=50"

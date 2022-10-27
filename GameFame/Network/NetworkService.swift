@@ -69,7 +69,7 @@ final class NetworkService: NetworkServiceProtocol {
     func fetchGameNews(completion: @escaping([GameNews]) -> Void) {
         
         let headers = [
-            "X-RapidAPI-Key": "589b522522msh728a92ad97d7a3bp19dfbbjsn77ddf633e1f3",
+            "X-RapidAPI-Key": "API_KEY",
             "X-RapidAPI-Host": "videogames-news2.p.rapidapi.com"
         ]
         var request = URLRequest(url: URL(string: "https://videogames-news2.p.rapidapi.com/videogames_news/recent")!)
