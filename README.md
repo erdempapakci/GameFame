@@ -40,7 +40,8 @@ Game Fame is a platform where users can search for games, as well as see trailer
 <img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198414094-29df2b3a-1b27-4296-a2c8-4182c1586609.png"><img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198414103-78cfb5d7-72ac-4293-887f-5b917166df23.png">
 
 
-<img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198415494-ee6f8784-f20b-46e9-842f-4afbe57cbedf.gif"><img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198419186-aa3e2c18-618b-4c4f-8a68-7e6156b637aa.gif">
+<img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198415494-ee6f8784-f20b-46e9-842f-4afbe57cbedf.gif"><img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198419186-aa3e2c18-618b-4c4f-8a68-7e6156b637aa.gif"><img width="260" alt="Phone 14 Pro - 2022-10-27 at 23 01 03" src="https://user-images.githubusercontent.com/73407945/198575803-6bda7862-c842-4d97-9328-8123215dba14.gif">
+
 
 
 
