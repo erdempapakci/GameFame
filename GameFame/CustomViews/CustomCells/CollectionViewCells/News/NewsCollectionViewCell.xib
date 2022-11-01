@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewsCollectionViewCell" id="gTV-IL-0wX" customClass="NewsCollectionViewCell" customModule="GameFame" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="314"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="314"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGV-9f-xsb" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="314"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vlu-Fz-sDw">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vlu-Fz-sDw" secondAttribute="height" multiplier="195:157" id="p7k-pT-7Tp"/>
+                                    <constraint firstAttribute="height" constant="314" id="rqH-Pj-MVD"/>
+                                    <constraint firstAttribute="width" constant="390" id="veZ-PM-mnL"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vlu-Fz-sDw" firstAttribute="leading" secondItem="uGV-9f-xsb" secondAttribute="leading" id="F1o-nQ-BRt"/>
+                            <constraint firstItem="Vlu-Fz-sDw" firstAttribute="top" secondItem="uGV-9f-xsb" secondAttribute="top" id="RH8-38-7Dk"/>
+                            <constraint firstAttribute="trailing" secondItem="Vlu-Fz-sDw" secondAttribute="trailing" id="UyW-j1-cmp"/>
+                            <constraint firstAttribute="bottom" secondItem="Vlu-Fz-sDw" secondAttribute="bottom" id="rAw-Lh-pzX"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uGV-9f-xsb" secondAttribute="trailing" id="7JR-Cc-mmJ"/>
+                <constraint firstAttribute="bottom" secondItem="uGV-9f-xsb" secondAttribute="bottom" id="AC0-cr-yKo"/>
+                <constraint firstItem="uGV-9f-xsb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Dtp-Dq-Kfs"/>
+                <constraint firstItem="uGV-9f-xsb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vCY-vf-KC4"/>
+            </constraints>
+            <connections>
+                <outlet property="newsImage" destination="Vlu-Fz-sDw" id="XsZ-f5-6tX"/>
+            </connections>
+            <point key="canvasLocation" x="131" y="-12"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

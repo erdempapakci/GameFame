@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sheet View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SheetViewController" id="Y6W-OH-hqX" customClass="SheetViewController" customModule="GameFame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOP-en-gwg" userLabel="Content View" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                                <rect key="frame" x="16" y="133" width="358" height="146"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainbow.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-GF-A1s">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="146"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="358" id="7YO-cy-TAp"/>
+                                            <constraint firstAttribute="width" secondItem="5a5-GF-A1s" secondAttribute="height" multiplier="179:73" id="WFY-yk-OO4"/>
+                                            <constraint firstAttribute="height" constant="146" id="iEs-eY-4JS"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="5a5-GF-A1s" firstAttribute="leading" secondItem="NOP-en-gwg" secondAttribute="leading" id="Lr8-Yg-lWg"/>
+                                    <constraint firstAttribute="trailing" secondItem="5a5-GF-A1s" secondAttribute="trailing" id="Snu-jF-N5Z"/>
+                                    <constraint firstAttribute="height" constant="146" id="iqy-fV-X16"/>
+                                    <constraint firstItem="5a5-GF-A1s" firstAttribute="top" secondItem="NOP-en-gwg" secondAttribute="top" id="lJw-lR-ZB2"/>
+                                    <constraint firstAttribute="bottom" secondItem="5a5-GF-A1s" secondAttribute="bottom" id="seI-pP-hyb"/>
+                                    <constraint firstAttribute="width" constant="358" id="xTK-5Q-01s"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zr5-7q-Yrs" customClass="CardView" customModule="GameFame" customModuleProvider="target">
+                                <rect key="frame" x="16" y="293" width="358" height="148"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fio-oI-5wI">
+                                        <rect key="frame" x="0.0" y="10" width="358" height="138"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="0RZ-xQ-sGA"/>
+                                    <constraint firstAttribute="width" constant="358" id="5zO-zH-Gle"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNB-0F-vLl">
+                                <rect key="frame" x="16" y="83" width="358" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="XJT-LY-M9q"/>
+                                    <constraint firstAttribute="width" constant="358" id="zYj-Yw-rrz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.03681649268" green="0.1400427222" blue="0.1945782006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zr5-7q-Yrs" secondAttribute="trailing" constant="16" id="9TQ-Cs-ooj"/>
+                            <constraint firstItem="NOP-en-gwg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Cj0-El-rzY"/>
+                            <constraint firstItem="zr5-7q-Yrs" firstAttribute="top" secondItem="NOP-en-gwg" secondAttribute="bottom" constant="14" id="DC1-It-zSH"/>
+                            <constraint firstItem="PNB-0F-vLl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Oq7-Bg-QWO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="NOP-en-gwg" secondAttribute="trailing" constant="16" id="Q86-wo-8za"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="PNB-0F-vLl" secondAttribute="bottom" constant="685" id="TnJ-jN-UaS"/>
+                            <constraint firstItem="PNB-0F-vLl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="36" id="UjM-QU-4mV"/>
+                            <constraint firstItem="zr5-7q-Yrs" firstAttribute="top" secondItem="NOP-en-gwg" secondAttribute="bottom" constant="14" id="bey-CH-NZA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PNB-0F-vLl" secondAttribute="trailing" constant="16" id="iXe-4Z-5g3"/>
+                            <constraint firstItem="NOP-en-gwg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="86" id="tPm-si-zfR"/>
+                            <constraint firstItem="zr5-7q-Yrs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="tuq-r5-5vX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLbl" destination="Fio-oI-5wI" id="oYU-iF-ILK"/>
+                        <outlet property="newsImage" destination="5a5-GF-A1s" id="5it-HQ-AvZ"/>
+                        <outlet property="titleLbl" destination="PNB-0F-vLl" id="GSx-rC-sqB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6.1538461538461533" y="-28.436018957345969"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="rainbow.jpg" width="58.560001373291016" height="30.239999771118164"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
