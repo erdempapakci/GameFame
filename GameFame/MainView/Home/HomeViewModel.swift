@@ -23,47 +23,84 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func fetchPopularGames() {
         
-        network.fetchGames(url: APIConstants.POPULAR_URL) { [weak self] response in
-            self?.popularsBehavior.onNext(response)
+        network.fetchGameDetails(GamesResponse.self, url: APIConstants.POPULAR_URL, gameID: "") {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.popularsBehavior.onNext(response.results)
+            case .failure(_):
+                print(NetworkError.emptyData)
+            }
         }
+        
     }
     
     func fetchMetacriticGames() {
         
-        network.fetchGames(url: APIConstants.METACRITIC_URL) { [weak self] response in
-            self?.metacriticBehavior.onNext(response)
+        network.fetchGameDetails(GamesResponse.self, url: APIConstants.METACRITIC_URL, gameID: "") {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.metacriticBehavior.onNext(response.results)
+            case .failure(_):
+                print(NetworkError.emptyData)
+            }
         }
+        
     }
     
     func fetchNews() {
         
-        network.fetchGameNews { [weak self] response in
-            
-            self?.gameNewsBehavior.onNext(response)
-            
+        network.fetchGameNews(type: [GameNews].self) { [weak self] response in
+            switch response {
+            case .failure(_):
+                print(NetworkError.unknownError)
+                
+            case .success(let gameNews):
+                self?.gameNewsBehavior.onNext(gameNews)
+                
+            }
         }
+        
     }
     
     func fetchGamesWithPage(with page: Int) {
         
         self.maxValue = page
-        network.fetchGameWithPage(with: page) { [weak self] response in
-            self?.items.accept(response)
-            
+        
+        network.fetchGameWithPage([Game].self, with: page) { [weak self ] result in
+            switch result {
+            case .success(let game):
+                self?.items.accept(game)
+            case .failure(_):
+                print(NetworkError.emptyData)
+            }
         }
+        
     }
     
     func handlePageOfGames(givenPage: Int) {
         
-        network.fetchGameWithPage(with: givenPage) { [weak self] response in
-            self?.items.accept((self?.items.value ?? [Game]()) + response)
+        network.fetchGameWithPage([Game].self, with: givenPage) { [weak self] result in
+            switch result {
+            case .success(let game):
+                self?.items.accept((self?.items.value ?? [Game]()) + game)
+            case .failure(_):
+                print(NetworkError.emptyData)
+            }
         }
+        
+        
     }
     
     func fetchUpComingGames() {
         
-        network.fetchGames(url: APIConstants.UPCOMING_URL) { [weak self] response in
-            self?.upcomingBehavior.onNext(response)
+        
+        network.fetchGameDetails(GamesResponse.self, url: APIConstants.UPCOMING_URL, gameID: "") {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.upcomingBehavior.onNext(response.results)
+            case .failure(_):
+                print(NetworkError.emptyData)
+            }
         }
     }
 }

@@ -9,102 +9,64 @@ import Foundation
 import Alamofire
 
 final class NetworkService: NetworkServiceProtocol {
-
+    
     static let sharedInstance = NetworkService()
-  
-    func fetchGames(url:String, completion: @escaping([Game]) -> Void) {
-        
-        AF.request(url, method: .get).responseDecodable(of:GamesResponse.self) { response in
-            
-            guard let data = response.value else {return}
-            completion(data.results)
-            
-        }
-    }
     
-    func fetchGameDetails(gameID: String, url: String, completion: @escaping(GameDetail) -> Void) {
-     
-        AF.request(url, method: .get).responseDecodable(of:GameDetail.self) { response in
-            
-            guard let data = response.value else {return}
-            completion(data)
-           
-        }
-    }
-    
-    func fetchGameScreenShots(gameID: String, url: String, completion: @escaping([GameScreenshot]) -> Void) {
+    func fetchGameDetails<T: Decodable>(_ type:T.Type, url: String, gameID: String, completion: @escaping(Result<T,NetworkError>) -> Void) {
         
-        AF.request(url, method: .get).responseDecodable(of:GameScreenShotResponse.self) { response in
-            
-            guard let data = response.value else {return}
-            completion(data.results)
-           
-        }
-    }
-    
-    func fetchGameTrailers(gameID: String, url: String, completion: @escaping(GameTrailer) -> Void) {
         
-        AF.request(url, method: .get).responseDecodable(of:GameTrailerResponse.self) { response in
+        AF.request(url, method: .get).responseDecodable(of:T.self) { response in
             
-            guard let data = response.value else {return}
-            
-            if data.results.count > 0 {
-                completion(data.results.first!)
-               
+            switch response.result {
+            case .success(let decodable):
+                completion(.success(decodable))
+            case .failure(_):
+                completion(.failure(.ErrorDecoding))
             }
-
-        }
-    }
-    
-    func fetchGameStores(gameID: String, url: String, completion: @escaping([GameStore]) -> Void) {
-        
-        AF.request(url, method: .get).responseDecodable(of:GameStoreResponse.self) { response in
             
-            guard let data = response.value else {return}
-            completion(data.results)
-
         }
     }
     
-    func fetchGameNews(completion: @escaping([GameNews]) -> Void) {
+    func fetchGameNews<T: Decodable>(type: T.Type, completion: @escaping(Result<T,NetworkError>) -> Void) {
         
-        let headers = [
+        let headers : HTTPHeaders = [
             "X-RapidAPI-Key": "API_KEY",
             "X-RapidAPI-Host": "videogames-news2.p.rapidapi.com"
         ]
-        var request = URLRequest(url: URL(string: "https://videogames-news2.p.rapidapi.com/videogames_news/recent")!)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
+        guard let url = URL(string: "https://videogames-news2.p.rapidapi.com/videogames_news/recent") else {
+            print(NetworkError.invalidUrl)
+            return
+        }
         
-        AF.request(request).responseDecodable(of:[GameNews].self) { response in
-            guard let data = response.value else {return}
-            completion(data)
+        AF.request(url, method: .get, headers: headers).responseDecodable(of:T.self) { response in
+            
+            switch response.result {
+            case .success(let decodable):
+                completion(.success(decodable))
+            case .failure(_):
+                completion(.failure(.ErrorDecoding))
+            }
             
         }
-    }
-   
-    func fetchGameWithSearch(with query: String, completion: @escaping([Game]) -> Void) {
         
-        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-        guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&page_size=20&search=\(query)") else {return}
-        
-        AF.request(url).responseDecodable(of:GamesResponse.self) { response in
-            guard let data = response.value else {return}
-            completion(data.results)
-
-        }
     }
     
-    func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void) {
-   
+    func fetchGameWithPage<T: Decodable>(_ type: T.Type, with page: Int, completion: @escaping(Result<T,NetworkError>) -> Void) {
+        
         guard let url = URL(string: "\(APIConstants.BASE_URL)/games?key=\(APIConstants.API_KEY)&ordering=-added&page_size=20&page=\(page)") else { return }
-
-        AF.request(url).responseDecodable(of:GamesResponse.self) { response in
-            guard let data = response.value else {return}
-            completion(data.results)
-   
+        
+        AF.request(url).responseDecodable(of:T.self) { response in
+            
+            switch response.result {
+            case .success(let decodable):
+                completion(.success(decodable))
+            case .failure(_):
+                completion(.failure(.ErrorDecoding))
+            }
+            
         }
+        
     }
-
+    
 }
 

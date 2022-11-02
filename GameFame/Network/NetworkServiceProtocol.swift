@@ -8,14 +8,10 @@
 import Foundation
 
 protocol NetworkServiceProtocol{
-    
-    func fetchGames(url:String, completion: @escaping([Game]) -> Void)
-    func fetchGameNews(completion: @escaping([GameNews]) -> Void)
-    func fetchGameDetails(gameID: String, url: String, completion: @escaping(GameDetail) -> Void)
-    func fetchGameScreenShots(gameID: String, url: String, completion: @escaping([GameScreenshot]) -> Void)
-    func fetchGameTrailers(gameID: String, url: String, completion: @escaping(GameTrailer) -> Void)
-    func fetchGameStores(gameID: String, url: String, completion: @escaping([GameStore]) -> Void)
-    func fetchGameWithSearch(with query: String, completion: @escaping([Game]) -> Void)
-    func fetchGameWithPage(with page: Int, completion: @escaping([Game]) -> Void)
+  
+    func fetchGameWithPage<T: Decodable>(_ type: T.Type, with page: Int, completion: @escaping(Result<T,NetworkError>) -> Void)
+    func fetchGameNews<T: Decodable>(type: T.Type, completion: @escaping(Result<T,NetworkError>) -> Void)
+    func fetchGameDetails<T: Decodable>(_ type:T.Type, url: String, gameID: String, completion: @escaping(Result<T,NetworkError>) -> Void)
     
 }
+
