@@ -11,7 +11,7 @@ import RxCocoa
 import SDWebImage
 
 
- final class SearchViewController: UIViewController, UIScrollViewDelegate {
+final class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
@@ -19,17 +19,17 @@ import SDWebImage
     private let bag = DisposeBag()
     private let viewModel = SearchViewModel()
     private var searchValue = BehaviorRelay<String>(value: "")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         bindSearchBar()
         registerCell()
         bindTableView()
         modelSelectedTableView()
-       
+        
     }
-
+    
     private func registerCell() {
         searchTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchTableViewCell")
         
@@ -53,7 +53,7 @@ extension SearchViewController {
         
         _ = searchValue.subscribe { value in
             _ = value.map { query in
-                // self.network.fetchGameWithSearch(with: keke)
+                
                 self.viewModel.searchGame(with: query)
                 
             }
@@ -66,25 +66,25 @@ extension SearchViewController {
                 cell.RatingView.isHidden = true
                 
             }
-                    cell.scoreLabel.text = String(item.metacritic ?? 0)
-                    cell.gameImage.sd_setImage(with: URL(string: item.background_image))
-                    cell.gameName.text = item.name
-                    cell.imageUrl = item.background_image
-                    cell.name = item.slug
-                    cell.delegate = self
-                    cell.stopLoading()
-
+            cell.scoreLabel.text = String(item.metacritic ?? 0)
+            cell.gameImage.sd_setImage(with: URL(string: item.background_image))
+            cell.gameName.text = item.name
+            cell.imageUrl = item.background_image
+            cell.name = item.slug
+            cell.delegate = self
+            cell.stopLoading()
+            
         }.disposed(by: self.bag)
         
     }
-   
+    
     private func modelSelectedTableView() {
         searchTableView.rx.modelSelected(Game.self)
             .subscribe { game in
                 
                 let main = UIStoryboard(name: "Main", bundle: nil)
                 let detailVC = main.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-
+                
                 detailVC.slug = game.slug
                 self.show(detailVC, sender: self)
                 
@@ -96,9 +96,9 @@ extension SearchViewController {
 extension SearchViewController: SearchTableViewCellDelegate {
     func didTapButton(title: String, image: UIImage) {
         let activityController = UIActivityViewController(activityItems: [title,
-                                                                         image],
-            applicationActivities: nil)
-            self.present(activityController, animated: true)
+                                                                          image],
+                                                          applicationActivities: nil)
+        self.present(activityController, animated: true)
     }
- 
+    
 }

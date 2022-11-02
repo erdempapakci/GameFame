@@ -28,11 +28,9 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         animationView.loopMode = .loop
         animationView.animationSpeed = 1.0
         animationView.play()
-      
-    
+
     }
-    
-    
+ 
     @IBAction func actionButtonTapped() {
         actionButtonDidTap?()
         

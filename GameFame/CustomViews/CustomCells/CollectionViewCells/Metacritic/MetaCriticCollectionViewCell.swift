@@ -8,7 +8,7 @@
 import UIKit
 
 final class MetaCriticCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var gameImage: UIImageView!
     @IBOutlet weak var gameName: UILabel!
     
@@ -28,5 +28,5 @@ final class MetaCriticCollectionViewCell: UICollectionViewCell {
         })
         
     }
-
+    
 }

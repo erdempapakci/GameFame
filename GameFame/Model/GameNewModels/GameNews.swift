@@ -11,7 +11,7 @@ struct GameNews: Codable {
     let title, date, welcomeDescription: String
     let image: String
     let link: String
-
+    
     enum CodingKeys: String, CodingKey {
         case title, date
         case welcomeDescription = "description"

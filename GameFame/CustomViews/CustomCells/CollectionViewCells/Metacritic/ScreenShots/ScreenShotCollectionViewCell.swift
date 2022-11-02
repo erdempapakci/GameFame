@@ -10,9 +10,7 @@ import UIKit
 
 final class ScreenShotCollectionViewCell: UICollectionViewCell {
     
-   
     @IBOutlet weak var SSImage: UIImageView!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,5 +28,5 @@ final class ScreenShotCollectionViewCell: UICollectionViewCell {
         })
         
     }
-   
+    
 }

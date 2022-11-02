@@ -28,8 +28,8 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var descriptionView: CardView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    
     @IBOutlet weak var trailerButton: UIButton!
+    
     lazy var realm = try! Realm()
     private var bag = DisposeBag()
     private var viewModel = DetailViewModel()
@@ -48,6 +48,7 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
+    
     @objc func handleLikeButton() {
         
         likeButton.flipLikeState()
@@ -61,9 +62,9 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         trailerButton.isHidden = true
         registerCells()
         executeLoading()
-  
+        
     }
-  
+    
     override func viewWillAppear(_ animated: Bool) {
         
         likeButton.isContains(with: slug)
@@ -71,7 +72,7 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = 0
         pageControl.numberOfPages = 6
     }
-
+    
     @IBAction func mp4Clicked(_ sender: Any) {
         
         guard let url = URL(string: trailerString) else {return}
@@ -92,13 +93,13 @@ final class DetailViewController: UIViewController, UIScrollViewDelegate {
         likeButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
         
     }
- 
+    
     @IBAction func backButtonClicked(_ sender: Any) {
         
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
-   
+    
     @IBAction func openURLClicked(_ sender: Any) {
         getPlatformURL()
         let urlString = url
@@ -155,7 +156,6 @@ extension DetailViewController {
             cell.stopLoading()
         }.disposed(by: bag)
         
-        
     }
     
     private func bindingUI() {
@@ -202,7 +202,7 @@ extension DetailViewController {
 extension DetailViewController {
     
     private func executeLoading() {
-   
+        
         self.gameName.startDSLoading()
         self.websiteLbl.startDSLoading()
         self.developerName.startDSLoading()
@@ -210,8 +210,8 @@ extension DetailViewController {
         self.releaseDate.startDSLoading()
         self.publisherLbl.startDSLoading()
         self.ratingLbl.startDSLoading()
-       
-    
+        
+        
     }
     func stopLoading() {
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
@@ -223,7 +223,7 @@ extension DetailViewController {
             self.releaseDate.stopDSLoading()
             self.publisherLbl.stopDSLoading()
             self.ratingLbl.stopDSLoading()
-           
+            
         })
         
     }

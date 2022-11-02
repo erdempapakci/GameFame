@@ -8,7 +8,7 @@
 import Foundation
 
 struct GameRedditResponse: Codable {
-
+    
     let results: [GameReddit]
 }
 
@@ -17,5 +17,5 @@ struct GameReddit: Codable {
     let image: String?
     let url: String
     let username: String
-
+    
 }

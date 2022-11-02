@@ -11,5 +11,5 @@ class SearchByPageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var gameImage: UIImageView!
-
+    
 }

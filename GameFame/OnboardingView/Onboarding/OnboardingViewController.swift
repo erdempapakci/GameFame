@@ -37,7 +37,7 @@ class OnboardingViewController: UIViewController {
         collectionView.isPagingEnabled = true
         
     }
-
+    
     private func handleActionButtonTap(at indexPath:IndexPath) {
         if indexPath.item == slides.count - 1 {
             showMainApp()
@@ -68,7 +68,7 @@ class OnboardingViewController: UIViewController {
         let index = Int(collectionView.contentOffset.y / scrollView.frame.size.height)
         pageControl.currentPage = index
     }
-
+    
 }
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -82,14 +82,13 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.actionButtonDidTap = { [weak self] in
             self?.handleActionButtonTap(at: indexPath)
         }
-        
-        
+   
         return cell
     }
     
-   
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-   
+        
         let itemWidth = collectionView.bounds.width
         let itemHeight = collectionView.bounds.height
         

@@ -8,17 +8,16 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     private let storyboardName = "Main"
     private let tabbarControllerIdentifier = "TabBarController"
     let vc : OnboardingViewController = OnboardingViewController()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-     
-        
-        if !UserDefaults.standard.bool(forKey: "didLoadedBefore") {
-            UserDefaults.standard.set(true, forKey: "didLoadedBefore")
+       
+        if !UserDefaults.standard.bool(forKey: "didLoadedBefored") {
+            UserDefaults.standard.set(true, forKey: "didLoadedBefored")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
@@ -37,11 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
             
         }
-       
-      
-       
-     
-    }
 
+    }
+    
 }
 

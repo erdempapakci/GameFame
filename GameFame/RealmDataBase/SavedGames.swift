@@ -13,9 +13,9 @@ class SavedGames: Object {
     @Persisted var image : String
     
     convenience init(name: String, image:String) {
-           self.init()
-           self.name = name
-           self.image = image
-       }
-   
+        self.init()
+        self.name = name
+        self.image = image
+    }
+    
 }
